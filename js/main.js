@@ -158,7 +158,7 @@ function indexProducts(products, category, divName){
 };
 function printBlogs(blogs){
 let sortedBlogs = blogs.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
-if(url == '/index.html'){
+if(url == '/index.html' || url == '/dailywebshop/index.html'){
 let latestBlogsWrapper = document.querySelector(`.aa-latest-blog-area .row`);
 let comments = getFromLocalStorage('comments');
 latestBlogsWrapper.innerHTML = '';
@@ -185,7 +185,7 @@ for(let i = 0; i < 3; i++){
             `;
 }
 }
-if(url == '/blog-archive-2.html'){
+if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
   window.onload = function(){
   let BlogsWrapper = document.querySelector('.aa-blog-content .row');
   let comments = getFromLocalStorage('comments');
@@ -1081,7 +1081,7 @@ function getFromLocalStorage(key){
 function addToLocalStorage(key, value){
   localStorage.setItem(key, JSON.stringify(value));
 };
-if(url == '/index.html'){  
+if(url == '/index.html' || url == '/dailywebshop/index.html'){  
   window.onload = function(){
     ajaxCallBack('products.json', function(data){
       indexProducts(data,'male','#men .aa-product-catg');
@@ -1096,7 +1096,7 @@ if(url == '/index.html'){
     localStorage.removeItem('users');
   }
 };
-if(url == '/blog-archive-2.html'){
+if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
   window.onload = function(){
     localStorage.removeItem('modalProduct');
     localStorage.removeItem('colors');
@@ -1124,7 +1124,7 @@ if(url == '/blog-archive-2.html'){
       });
     });
 };
-if(url == '/blog-single.html'){
+if(url == '/blog-single.html' || url == '/dailywebshop/blog-single.html'){
   window.onload = function(){
     let blogs = getFromLocalStorage('allBlogs');
     localStorage.removeItem('modalProduct');
@@ -1202,7 +1202,7 @@ if(url == '/blog-single.html'){
     
   };
 };
-if(url == '/products.html'){
+if(url == '/products.html' || url == '/dailywebshop/products.html'){
 ajaxCallBack('products.json', function(data){
   addToLocalStorage('allProducts', data);
   printProducts(data);
@@ -1294,7 +1294,7 @@ window.onload= function(){
   });
 }
 };
-if(url == '/product-detail.html'){
+if(url == '/product-detail.html' || url == '/dailywebshop/product-detail.html'){
  let productInfoWrapper = document.querySelector('.aa-product-details-content .row');
   let clickedProduct = getFromLocalStorage('clickedProduct');
   let categories = getFromLocalStorage('categories');
@@ -1381,7 +1381,7 @@ if(url == '/product-detail.html'){
     localStorage.removeItem('comments');
   } 
 };
-if(url == '/wishlist.html'){
+if(url == '/wishlist.html' || url == '/dailywebshop/wishlist.html'){
   let wishlistWrapper = document.querySelector('.table tbody');
   let table = document.querySelector('#cart-view .container');
   let wishlist = getFromLocalStorage('wishlist');
@@ -1420,7 +1420,7 @@ window.onload = function(){
 }
 };
 };
-if(url == '/cart.html'){
+if(url == '/cart.html' || url == '/dailywebshop/cart.html'){
   let cartWrapper = document.querySelector('.table tbody');
   let table = document.querySelector('#cart-view .container');
   let cart = getFromLocalStorage('cart');
@@ -1485,7 +1485,7 @@ if(url == '/cart.html'){
  
  };
 }
-if(url == '/checkout.html'){
+if(url == '/checkout.html' || url == '/dailywebshop/checkout.html'){
   window.onload = function(){
     localStorage.removeItem('users');
     localStorage.removeItem('comments');
