@@ -63,11 +63,11 @@ else{
   numberInCart.innerHTML = '0';
   addToLocalStorage('cart', []);
 }
-if(window.location.pathname !== '/blog-single.html' && window.location.pathname !== '/blog-archive-2.html' && window.location.pathname !== '/index.html')
+if(window.location.pathname !== '/dailywebshop/blog-single.html' && window.location.pathname !== '/dailywebshop/blog-archive-2.html' && window.location.pathname !== '/dailywebshop/index.html')
 {
   localStorage.removeItem('clickedBlog');
 };
-if(window.location.pathname !== '/product-detail.html'){
+if(window.location.pathname !== '/product-detail.html' || window.location.pathname !== '/dailywebshop/product-detail.html'){
   localStorage.removeItem('clickedProduct');
 };
 let navBar = document.querySelector('.navbar-nav');
@@ -1082,12 +1082,12 @@ function addToLocalStorage(key, value){
   localStorage.setItem(key, JSON.stringify(value));
 };
 if(url == '/index.html' || url == '/dailywebshop/index.html'){  
+  ajaxCallBack('products.json', function(data){
+    indexProducts(data,'male','#men .aa-product-catg');
+    indexProducts(data, 'female', '#women .aa-product-catg');
+    indexProducts(data, 'sport', '#sports .aa-product-catg');
+});
   window.onload = function(){
-    ajaxCallBack('products.json', function(data){
-      indexProducts(data,'male','#men .aa-product-catg');
-      indexProducts(data, 'female', '#women .aa-product-catg');
-      indexProducts(data, 'sport', '#sports .aa-product-catg');
-  });
     addingProducts('.wish-btn','wishlist');
     addingProducts('.cart-btn','cart');
     mailCheck();
