@@ -1,0 +1,79 @@
+[
+    {
+        "id": 1,
+        "blogId": 1,
+        "authorId": 6,
+        "content": "Nice text. I like it.",
+        "createdAt": "01-25-2023"
+    },
+    {
+        "id": 2,
+        "blogId": 1,
+        "authorId": 7,
+        "content": "Good to know, thanks for sharing.",
+        "createdAt": "01-20-2023"
+    },
+    {
+        "id": 3,
+        "blogId": 2,
+        "authorId": 4,
+        "content": "Thanks, I will try it out.",
+        "createdAt": "01-08-2023"
+    },
+    {
+        "id": 4,
+        "blogId": 2,
+        "authorId": 8,
+        "content": "Dear author, I like your article.",
+        "createdAt": "12-31-2022"
+    },
+    {
+        "id": 5,
+        "blogId": 2,
+        "authorId": 11,
+        "content": "I'll try it out, thanks for sharing.",
+        "createdAt": "12-25-2022"
+    },
+    {
+        "id": 6,
+        "blogId": 3,
+        "authorId": 9,
+        "content": "For me, it's better to run in leggings.",
+        "createdAt": "12-01-2022"
+    },
+    {
+        "id": 7,
+        "blogId": 5,
+        "authorId": 4,
+        "content": "This is very important ot me. Thanks Gabi!",
+        "createdAt": "10-01-2022"
+    },
+    {
+        "id": 8,
+        "blogId": 5,
+        "authorId": 13,
+        "content": "I was worried about how I looked while working out. Now I'm not.",
+        "createdAt": "08-14-2022"
+    },
+    {
+        "id": 9,
+        "blogId": 5,
+        "authorId": 14,
+        "content": "Really nice blog post Gabriela. :)",
+        "createdAt": "07-31-2022"
+    },
+    {
+        "id": 10,
+        "blogId": 6,
+        "authorId": 15,
+        "content": "I can't wait to get ready for my boyfriend for Valentine's Day. Thanks for the tips!",
+        "createdAt": "02-10-2022"
+    },
+    {
+        "id": 11,
+        "blogId": 6,
+        "authorId": 5,
+        "content": "Dear Angela, I am really looking forward to your next blog post. :)",
+        "createdAt": "02-03-2022"
+    }
+]

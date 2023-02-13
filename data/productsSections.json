@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "New"
+    },
+    {
+        "id": 2,
+        "name": "Sold out"
+    },
+    {
+        "id": 3,
+        "name": "Popular"
+    },
+    {
+        "id": 4,
+        "name": "Top rated"
+    },
+    {
+        "id": 5,
+        "name": "Free shipping"
+    }
+]

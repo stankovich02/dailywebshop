@@ -1,0 +1,66 @@
+[
+            {
+                "id": 1,
+                "name": "T-Shirts"
+            },
+            {
+                "id": 2,
+                "name": "Jackets"
+            },
+            {
+                "id": 3,
+                "name": "Jeans"
+            },
+            {
+                "id": 4,
+                "name": "Hoodies"
+            },
+            {
+                "id": 5,
+                "name": "Dresses"
+            },
+            {
+                "id": 6,
+                "name": "Leggings"
+            },
+            {
+                "id": 7,
+                "name": "Shoes"
+            },
+            {
+                "id": 8,
+                "name": "Sneakers"
+            },
+            {
+                "id": 9,
+                "name": "Heels"
+            },
+            {
+                "id": 10,
+                "name": "Boots"
+            },
+            {
+                "id": 11,
+                "name": "Balls"
+            },
+            {
+                "id": 12,
+                "name": "Jerseys"
+            },
+            {
+                "id": 13,
+                "name": "Gloves"
+            },
+            {
+                "id": 14,
+                "name": "Weights"
+            },
+            {
+                "id": 15,
+                "name": "Rackets"
+            },
+            {
+                "id": 16,
+                "name": "Football Boots"
+            }
+]

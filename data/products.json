@@ -1,0 +1,962 @@
+[
+    {
+        "id": 1,
+        "name": "Agolde women's high rise skinny jeans",
+        "brandId": 15,
+        "categoryId": 3,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 37
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/women/clothes/jeans/farmerke-2.png",
+        "freeShipping": false,
+        "shippingFee": 2,
+        "productsSectionId": null,
+        "availableSizes": ["S","M","L","XL"],
+        "colorId": 5
+    },
+    {
+        "id": 2,
+        "name": "Beauty Madame Boots",
+        "brandId": 18,
+        "categoryId": 10,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": 49,
+                "activePrice": 39
+            },
+        "discount": true,
+        "discountPercent": "20",
+        "image": "img/women/footwears/boots/cizme-2.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": [],
+        "colorId": 1
+    },
+    {
+        "id": 3,
+        "name": "Brown Leather Jacket",
+        "brandId": 7,
+        "categoryId": 2,
+        "genderId": 1,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 50
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/men/clothes/jackets/jakna-1.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["L","XL"],
+        "colorId": 11
+    },
+    {
+        "id": 4,
+        "name": "Green Nike Sneakers",
+        "brandId": 1,
+        "categoryId": 8,
+        "genderId": 1,
+        "price":
+            {
+                "oldPrice": 99,
+                "activePrice": 90
+            },
+        "discount": true,
+        "discountPercent": "10",
+        "image": "img/men/footwear/sneakers/patike-1.png",
+        "freeShipping": false,
+        "shippingFee": 3,
+        "productsSectionId": 3,
+        "availableSizes": ["37","38","42","44"],
+        "colorId": 4
+    },
+    {
+        "id": 5,
+        "name": "Men shoes brown leather",
+        "brandId": 7,
+        "categoryId": 7,
+        "genderId": 1,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 120
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/men/footwear/shoes/cipele-2.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["39","40","42"],
+        "colorId": 11
+    },
+    {
+        "id": 6,
+        "name": "New Balance red hoodie",
+        "brandId": 12,
+        "categoryId": 4,
+        "genderId": 1,
+        "price":
+            {
+                "oldPrice": 39,
+                "activePrice": 29
+            },
+        "discount": true,
+        "discountPercent": "25",
+        "image": "img/men/clothes/hoodies/dukser-3.png",
+        "freeShipping": false,
+        "shippingFee": 3,
+        "productsSectionId": null,
+        "availableSizes": ["M","L","XL","2XL"],
+        "colorId": 3
+    },
+    {
+        "id": 7,
+        "name": "Kappa black cotton t-shirt",
+        "brandId": 8,
+        "categoryId": 1,
+        "genderId": 1,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 20
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/men/clothes/t-shirts/majica-1.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": [],
+        "colorId": 1
+    },
+    {
+        "id": 8,
+        "name": "Blue leggings",
+        "brandId": 1,
+        "categoryId": 6,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 15
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/women/clothes/leggings/helanke-2.png",
+        "freeShipping": false,
+        "shippingFee": 2,
+        "productsSectionId": 1,
+        "availableSizes": ["XS","S","M"],
+        "colorId": 5
+    },
+    {
+        "id": 9,
+        "name": "Beauty blue Dress",
+        "brandId": 14,
+        "categoryId": 5,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": 59,
+                "activePrice": 47
+            },
+        "discount": true,
+        "discountPercent": "20",
+        "image": "img/women/clothes/dresses/haljina-2.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["S","L"],
+        "colorId": 5
+    },
+    {
+        "id": 10,
+        "name": "Gray cotton t-shirt",
+        "brandId": 3,
+        "categoryId": 1,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 16
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/women/clothes/t-shirts/majica-1.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["S", "L", "XL"],
+        "colorId": 9
+    },
+    {
+        "id": 11,
+        "name": "Black gucci shoes",
+        "brandId": 5,
+        "categoryId": 7,
+        "genderId": 1,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 115
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/men/footwear/shoes/cipele-1.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": [],
+        "colorId": 1
+    },
+    {
+        "id": 12,
+        "name": "Exotic men jeans",
+        "brandId": 7,
+        "categoryId": 3,
+        "genderId": 1,
+        "price":
+            {
+                "oldPrice": 36,
+                "activePrice": 29
+            },
+        "discount": true,
+        "discountPercent": "20",
+        "image": "img/men/clothes/jeans/farmerke-3.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["XL"],
+        "colorId": 5
+    },
+    {
+        "id": 13,
+        "name": "Nike black hoodie",
+        "brandId": 1,
+        "categoryId": 4,
+        "genderId": 1,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 45
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/men/clothes/hoodies/dukser-1.png",
+        "freeShipping": false,
+        "shippingFee": 2,
+        "productsSectionId": null,
+        "availableSizes": ["L","2XL"],
+        "colorId": 1
+    },
+    {
+        "id": 14,
+        "name": "Green women jeans",
+        "brandId": 2,
+        "categoryId": 3,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 30
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/women/clothes/jeans/farmerke-3.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["M","L"],
+        "colorId": 4
+    },
+    {
+        "id": 15,
+        "name": "Beauty red Dress",
+        "brandId": 14,
+        "categoryId": 5,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": 79,
+                "activePrice": 70
+            },
+        "discount": true,
+        "discountPercent": "10",
+        "image": "img/women/clothes/dresses/haljina-1.png",
+        "freeShipping": false,
+        "shippingFee": 2,
+        "productsSectionId": 4,
+        "availableSizes": ["L","XL"],
+        "colorId": 3
+    },
+    {
+        "id": 16,
+        "name": "Nike AirMax",
+        "brandId": 1,
+        "categoryId": 8,
+        "genderId": 1,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 75
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/men/footwear/sneakers/patike-3.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["38","40"],
+        "colorId": 5
+    },
+    {
+        "id": 17,
+        "name": "Adidas yellow t-shirt",
+        "brandId": 4,
+        "categoryId": 1,
+        "genderId": 1,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 22
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/men/clothes/t-shirts/majica-2.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["XS","XL"],
+        "colorId": 7
+    },
+    {
+        "id": 18,
+        "name": "Exotic blue jeans",
+        "brandId": 5,
+        "categoryId": 3,
+        "genderId": 1,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 35
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/men/clothes/jeans/farmerke-1.png",
+        "freeShipping": false,
+        "shippingFee": 3,
+        "productsSectionId": 3,
+        "availableSizes": ["L","XL","2XL"],
+        "colorId": 5
+    },
+    {
+        "id": 19,
+        "name": "Red heels",
+        "brandId": 17,
+        "categoryId": 9,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 80
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/women/footwears/heels/stikle-1.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["38","39"],
+        "colorId": 3
+    },
+    {
+        "id": 20,
+        "name": "Beauty pink jacket",
+        "brandId": 16,
+        "categoryId": 2,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": 60,
+                "activePrice": 54
+            },
+        "discount": true,
+        "discountPercent": "10",
+        "image": "img/women/clothes/jackets/jakna-1.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["L","XL"],
+        "colorId": 10
+    },
+    {
+        "id": 21,
+        "name": "Black leggings",
+        "brandId": 4,
+        "categoryId": 6,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 18
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/women/clothes/leggings/helanke-1.png",
+        "freeShipping": false,
+        "shippingFee": 2,
+        "productsSectionId": 1,
+        "availableSizes": ["XS","S","M"],
+        "colorId": 1
+    },
+    {
+        "id": 22,
+        "name": "Reebok sneakers",
+        "brandId": 10,
+        "categoryId": 8,
+        "genderId": 1,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 54
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/men/footwear/sneakers/patike-2.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["39","40","41"],
+        "colorId": 1
+    },
+    {
+        "id": 23,
+        "name": "New Balance yellow hoodie",
+        "brandId": 12,
+        "categoryId": 4,
+        "genderId": 1,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 37
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/men/clothes/hoodies/dukser-2.png",
+        "freeShipping": false,
+        "shippingFee": 3,
+        "productsSectionId": 2,
+        "availableSizes": ["M","L","XL"],
+        "colorId": 7
+    },
+    {
+        "id": 24,
+        "name": "Women gucci hoodie",
+        "brandId": 5,
+        "categoryId": 4,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 43
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/women/clothes/hoodies/dukser-1.png",
+        "freeShipping": false,
+        "shippingFee": 2,
+        "productsSectionId": null,
+        "availableSizes": ["L","XL"],
+        "colorId": 9
+    },
+    {
+        "id": 25,
+        "name": "Red leather jacket",
+        "brandId": 17,
+        "categoryId": 2,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": 55,
+                "activePrice": 50
+            },
+        "discount": true,
+        "discountPercent": "10",
+        "image": "img/women/clothes/jackets/jakna-2.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["XS", "L"],
+        "colorId": 3
+    },
+    {
+        "id": 26,
+        "name": "Red cotton t-shirt",
+        "brandId": 3,
+        "categoryId": 1,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 18
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/women/clothes/t-shirts/majica-2.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["S","M","L","XL"],
+        "colorId": 3
+    },
+    {
+        "id": 27,
+        "name": "Pink nike sneakers",
+        "brandId": 1,
+        "categoryId": 8,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 39
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/women/footwears/sneakers/patike-1.png",
+        "freeShipping": false,
+        "shippingFee": 2,
+        "productsSectionId": 3,
+        "availableSizes": ["39","40","41"],
+        "colorId": 10
+    },
+    {
+        "id": 28,
+        "name": "Exotic women jeans",
+        "brandId": 6,
+        "categoryId": 3,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 35
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/women/clothes/jeans/farmerke-1.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["M","L","XL"],
+        "colorId": 5
+    },
+    {
+        "id": 29,
+        "name": "Pink hoodie",
+        "brandId": 7,
+        "categoryId": 4,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 57
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/women/clothes/hoodies/dukser-2.png",
+        "freeShipping": false,
+        "shippingFee": 2,
+        "productsSectionId": 4,
+        "availableSizes": [],
+        "colorId": 10
+    },
+    {
+        "id": 30,
+        "name": "Brown Everlane boots",
+        "brandId": 16,
+        "categoryId": 10,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 50
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/women/footwears/boots/cizme-1.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["39","40","41"],
+        "colorId": 11
+    },
+    {
+        "id": 31,
+        "name": "Pink beauty sneakers",
+        "brandId": 8,
+        "categoryId": 8,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 28
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/women/footwears/sneakers/patike-3.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["37","41"],
+        "colorId": 10
+    },
+    {
+        "id": 32,
+        "name": "Black jeans",
+        "brandId": 7,
+        "categoryId": 3,
+        "genderId": 1,
+        "price":
+            {
+                "oldPrice": 50,
+                "activePrice": 40
+            },
+        "discount": true,
+        "discountPercent": "20",
+        "image": "img/men/clothes/jeans/farmerke-2.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["L","XL","2XL"],
+        "colorId": 1
+    },
+    {
+        "id": 33,
+        "name": "Pink heels",
+        "brandId": 17,
+        "categoryId": 9,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 70
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/women/footwears/heels/stikle-2.png",
+        "freeShipping": false,
+        "shippingFee": 3,
+        "productsSectionId": 2,
+        "availableSizes": ["38","39"],
+        "colorId": 10
+    },
+    {
+        "id": 34,
+        "name": "Red sneakers",
+        "brandId": 6,
+        "categoryId": 8,
+        "genderId": 2,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 34
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/women/footwears/sneakers/patike-2.png",
+        "freeShipping": false,
+        "shippingFee": 2,
+        "productsSectionId": null,
+        "availableSizes": ["39"],
+        "colorId": 3
+    },
+    {
+        "id": 35,
+        "name": "Football ball",
+        "brandId": 4,
+        "categoryId": 11,
+        "genderId": 3,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 15
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/sports/balls/lopta-3.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": [],
+        "colorId": 2
+    },
+    {
+        "id": 36,
+        "name": "Spalding basketball ball",
+        "brandId": 11,
+        "categoryId": 11,
+        "genderId": 3,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 20
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/sports/balls/lopta-2.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": [],
+        "colorId": 2
+    },
+    {
+        "id": 37,
+        "name": "Basketball ball",
+        "brandId": 2,
+        "categoryId": 11,
+        "genderId": 3,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 10
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/sports/balls/lopta-1.png",
+        "freeShipping": false,
+        "shippingFee": 2,
+        "productsSectionId": 1,
+        "availableSizes": [],
+        "colorId": 6
+    },
+    {
+        "id": 38,
+        "name": "Nike football boots",
+        "brandId": 1,
+        "categoryId": 16,
+        "genderId": 3,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 100
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/sports/boots/kopacke-2.png",
+        "freeShipping": false,
+        "shippingFee": 2,
+        "productsSectionId": 4,
+        "availableSizes": ["39","42"],
+        "colorId": 5
+    },
+    {
+        "id": 39,
+        "name": "Adidas comfort boots",
+        "brandId": 4,
+        "categoryId": 16,
+        "genderId": 3,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 95
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/sports/boots/kopacke-1.png",
+        "freeShipping": false,
+        "shippingFee": 2,
+        "productsSectionId": null,
+        "availableSizes": ["40","41","42"],
+        "colorId": 3
+    },
+    {
+        "id": 40,
+        "name": "Black boxing gloves",
+        "brandId": 8,
+        "categoryId": 13,
+        "genderId": 3,
+        "price":
+            {
+                "oldPrice": 45,
+                "activePrice": 40
+            },
+        "discount": true,
+        "discountPercent": "10",
+        "image": "img/sports/gloves/rukavice-1.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["S","M","L"],
+        "colorId": 1
+    },
+    {
+        "id": 41,
+        "name": "Red boxing gloves",
+        "brandId": 8,
+        "categoryId": 13,
+        "genderId": 3,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 40
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/sports/gloves/rukavice-2.png",
+        "freeShipping": false,
+        "shippingFee": 3,
+        "productsSectionId": 2,
+        "availableSizes": ["M","XL"],
+        "colorId": 3
+    },
+    {
+        "id": 42,
+        "name": "Blue jersey",
+        "brandId": 1,
+        "categoryId": 12,
+        "genderId": 3,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 80
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/sports/jerseys/dres-1.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["S","L"],
+        "colorId": 5
+    },
+    {
+        "id": 43,
+        "name": "Houston Rockets jersey",
+        "brandId": 4,
+        "categoryId": 12,
+        "genderId": 3,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 100
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/sports/jerseys/dres-2.png",
+        "freeShipping": false,
+        "shippingFee": 3,
+        "productsSectionId": 4,
+        "availableSizes": ["S","L"],
+        "colorId": 2
+    },
+    {
+        "id": 44,
+        "name": "Liverpool jersey",
+        "brandId": 1,
+        "categoryId": 12,
+        "genderId": 3,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 150
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/sports/jerseys/dres-3.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": ["XS","M","L","XL"],
+        "colorId": 3
+    },
+    {
+        "id": 45,
+        "name": "White tennis racket",
+        "brandId": 3,
+        "categoryId": 15,
+        "genderId": 3,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 60
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/sports/rackets/reket-1.png",
+        "freeShipping": false,
+        "shippingFee": 2,
+        "productsSectionId": null,
+        "availableSizes": [],
+        "colorId": 2
+    },
+    {
+        "id": 46,
+        "name": "Wimbledon tennis racket",
+        "brandId": 1,
+        "categoryId": 15,
+        "genderId": 3,
+        "price":
+            {
+                "oldPrice": 80,
+                "activePrice": 70
+            },
+        "discount": true,
+        "discountPercent": "10",
+        "image": "img/sports/rackets/reket-2.png",
+        "freeShipping": false,
+        "shippingFee": 2,
+        "productsSectionId": 4,
+        "availableSizes": [],
+        "colorId": 4
+    },
+    {
+        "id": 47,
+        "name": "Dumbbells 2x5kg",
+        "brandId": 6,
+        "categoryId": 14,
+        "genderId": 3,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 40
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/sports/weights/teg-1.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": [],
+        "colorId": 1
+    },
+    {
+        "id": 48,
+        "name": "Dumbbells 10kg",
+        "brandId": 6,
+        "categoryId": 14,
+        "genderId": 3,
+        "price":
+            {
+                "oldPrice": null,
+                "activePrice": 60
+            },
+        "discount": false,
+        "discountPercent": "",
+        "image": "img/sports/weights/teg-2.png",
+        "freeShipping": true,
+        "shippingFee": null,
+        "productsSectionId": 5,
+        "availableSizes": [],
+        "colorId": 1
+    }
+]

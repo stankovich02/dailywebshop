@@ -1,0 +1,77 @@
+[
+    {
+        "id": 1,
+        "name": "Zakir Dunn",
+        "avatar": "img/Zakir-Dunn.png"
+    },
+    {
+        "id": 2,
+        "name": "Ricardo Chan",
+        "avatar": "img/Ricardo-Chan.png"
+    },
+    {
+        "id": 3,
+        "name": "Angela Thomas",
+        "avatar": "img/Angela-Thomas.png"
+    },
+    {
+        "id": 4,
+        "name": "Nia Johnston",
+        "avatar": "img/Nia-Johnston.png"
+    },
+    {
+        "id": 5,
+        "name": "Aishah Whitehead",
+        "avatar": "img/Aishah-Whitehead.png"
+    },
+    {
+        "id": 6,
+        "name": "Ted Best",
+        "avatar": "img/Ted-Best.png"
+    },
+    {
+        "id": 7,
+        "name": "Mario Kirby",
+        "avatar": "img/Mario-Kirby.png"
+    },
+    {
+        "id": 8,
+        "name": "Gabriela Jefferson",
+        "avatar": "img/Gabriela-Jefferson.png"
+    },
+    {
+        "id": 9,
+        "name": "Polly Case",
+        "avatar": "img/Polly-Case.png"
+    },
+    {
+        "id": 10,
+        "name": "Bilal Robinson",
+        "avatar": "img/Bilal-Robinson.png"
+    },
+    {
+        "id": 11,
+        "name": "Annalise Holden",
+        "avatar": "img/Annalise-Holden.png"
+    },
+    {
+        "id": 12,
+        "name": "Roberta Pace",
+        "avatar": "img/Roberta-Pace.png"
+    },
+    {
+        "id": 13,
+        "name": "Stephanie Salinas",
+        "avatar": "img/Stephanie-Salinas.png"
+    },
+    {
+        "id": 14,
+        "name": "Jude Gray",
+        "avatar": "img/Jude-Gray.png"
+    },
+    {
+        "id": 15,
+        "name": "Lorna Medina",
+        "avatar": "img/Lorna-Medina.png"
+    }
+]
