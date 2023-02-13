@@ -67,7 +67,7 @@ if(window.location.pathname !== '/dailywebshop/blog-single.html' && window.locat
 {
   localStorage.removeItem('clickedBlog');
 };
-if(window.location.pathname !== '/product-detail.html' || window.location.pathname !== '/dailywebshop/product-detail.html'){
+if(window.location.pathname !== '/product-detail.html' && window.location.pathname !== '/dailywebshop/product-detail.html' && window.location.pathname !== '/dailywebshop/index.html' && window.location.pathname !== '/index.html' && window.location.pathname !== '/produts.html' && window.location.pathname !== '/dailywebshop/products.html'){
   localStorage.removeItem('clickedProduct');
 };
 let navBar = document.querySelector('.navbar-nav');
