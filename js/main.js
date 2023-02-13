@@ -42,9 +42,9 @@ let comments = fetch(BASEURL + 'comments.json')
 ajaxCallBack('categories.json', function(data){
   addToLocalStorage('categories', data);
 });
-ajaxCallBack('blogs.json', function(data){
-  addToLocalStorage('allBlogs', data);
-});
+// ajaxCallBack('blogs.json', function(data){
+//   addToLocalStorage('allBlogs', data);
+// });
 ajaxCallBack('productsSections.json' , function(data){
   addToLocalStorage('sectionsProducts', data);
 });
@@ -63,13 +63,6 @@ else{
   numberInCart.innerHTML = '0';
   addToLocalStorage('cart', []);
 }
-if(window.location.pathname !== '/dailywebshop/blog-single.html' && window.location.pathname !== '/dailywebshop/blog-archive-2.html' && window.location.pathname !== '/dailywebshop/index.html')
-{
-  localStorage.removeItem('clickedBlog');
-};
-// if(window.location.pathname !== '/product-detail.html' && window.location.pathname !== '/dailywebshop/product-detail.html' && window.location.pathname !== '/dailywebshop/index.html' && window.location.pathname !== '/index.html' && window.location.pathname !== '/produts.html' && window.location.pathname !== '/dailywebshop/products.html'){
-//   localStorage.removeItem('clickedProduct');
-// };
 let navBar = document.querySelector('.navbar-nav');
 let navBtn = document.querySelector('.navbar-toggle');
 navBtn.addEventListener('click', function(){
@@ -186,7 +179,6 @@ for(let i = 0; i < 3; i++){
 }
 }
 if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
-  window.onload = function(){
   let BlogsWrapper = document.querySelector('.aa-blog-content .row');
   let comments = getFromLocalStorage('comments');
   BlogsWrapper.innerHTML = '';
@@ -212,7 +204,6 @@ if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
                     </div>
                 `;
     }
-  }
 }
 };
 function UsersAndTheirBlogs(users,blog){
@@ -722,7 +713,6 @@ function changeBlogs(){
 
   printBlogs(blogs);
 });
-  // let blogs = getFromLocalStorage('allBlogs');
   
 }
 function filterProducts(products, type, filter){
@@ -1075,6 +1065,18 @@ function validation(){
     };
   });
 }
+function printBlogTags(blogTags){
+  let returnValue = '';
+  for(let i = 0; i < blogTags.length; i++){
+    if(i == blogTags.length - 1){
+      returnValue += ` ${blogTags[i]} `;
+    }
+    else{
+    returnValue += ` ${blogTags[i]} ,`;
+    }
+  }
+  return returnValue;
+}
 function getFromLocalStorage(key){
   return JSON.parse(localStorage.getItem(key));
 }
@@ -1091,18 +1093,18 @@ if(url == '/index.html' || url == '/dailywebshop/index.html'){
     addingProducts('.wish-btn','wishlist');
     addingProducts('.cart-btn','cart');
     mailCheck();
-    let blogs = getFromLocalStorage('allBlogs');
+    ajaxCallBack('blogs.json', function(blogs){
     printBlogs(blogs);
-    localStorage.removeItem('users');
+    });
   }
 };
 if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
-  window.onload = function(){
-    localStorage.removeItem('modalProduct');
-    localStorage.removeItem('colors');
-    localStorage.removeItem('sectionsProducts');
-  };
-  let blogs = getFromLocalStorage('allBlogs');
+  // window.onload = function(){
+  //   localStorage.removeItem('modalProduct');
+  //   localStorage.removeItem('colors');
+  //   localStorage.removeItem('sectionsProducts');
+  // };
+  ajaxCallBack('blogs.json', function(blogs){
   printBlogs(blogs);
     let categories = document.querySelectorAll('.aa-catg-nav li a');
     let tags = document.querySelectorAll('.tag-cloud a');
@@ -1123,26 +1125,15 @@ if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
         changeBlogs();
       });
     });
+  });
 };
 if(url == '/blog-single.html' || url == '/dailywebshop/blog-single.html'){
   window.onload = function(){
-    let blogs = getFromLocalStorage('allBlogs');
-    localStorage.removeItem('modalProduct');
-    localStorage.removeItem('colors');
-    localStorage.removeItem('sectionsProducts');
-    let clickedBlog = getFromLocalStorage('clickedBlog');
-      function printBlogTags(blogTags){
-        let returnValue = '';
-        for(let i = 0; i < blogTags.length; i++){
-          if(i == blogTags.length - 1){
-            returnValue += ` ${blogTags[i]} `;
-          }
-          else{
-          returnValue += ` ${blogTags[i]} ,`;
-          }
-        }
-        return returnValue;
-      }
+    ajaxCallBack('blogs.json', function(blogs){
+    // localStorage.removeItem('modalProduct');
+    // localStorage.removeItem('colors');
+    // localStorage.removeItem('sectionsProducts');
+      let clickedBlog = getFromLocalStorage('clickedBlog');
       let usersFromLocalStorage = getFromLocalStorage('users');    
       let blogContent = document.querySelector('.aa-blog-content');
       let getComments = getFromLocalStorage('comments');
@@ -1199,7 +1190,7 @@ if(url == '/blog-single.html' || url == '/dailywebshop/blog-single.html'){
       });
      
       
-    
+    });
   };
 };
 if(url == '/products.html' || url == '/dailywebshop/products.html'){
@@ -1230,8 +1221,8 @@ search.addEventListener('keyup', function(){
 window.onload= function(){
   addingProducts('.wish-btn','wishlist');
   addingProducts('.cart-btn','cart'); 
-  localStorage.removeItem('users');
-  localStorage.removeItem('comments');
+  // localStorage.removeItem('users');
+  // localStorage.removeItem('comments');
   let genders = document.querySelectorAll('.input-gender input')
   let categories = document.querySelectorAll('.input-category input');
   let brands = document.querySelectorAll('.input-brand input');
@@ -1377,8 +1368,8 @@ if(url == '/product-detail.html' || url == '/dailywebshop/product-detail.html'){
   window.onload= function(){
     addingProducts('.wish-btn','wishlist');
     addingProducts('.cart-btn','cart');
-    localStorage.removeItem('users');
-    localStorage.removeItem('comments');
+    // localStorage.removeItem('users');
+    // localStorage.removeItem('comments');
   } 
 };
 if(url == '/wishlist.html' || url == '/dailywebshop/wishlist.html'){
@@ -1412,11 +1403,11 @@ if(url == '/wishlist.html' || url == '/dailywebshop/wishlist.html'){
 window.onload = function(){
   addingProducts('.cart-btn','cart');
   deleteProduct('wishlist');
-  localStorage.removeItem('users');
-  localStorage.removeItem('comments');
-  localStorage.removeItem('modalProduct');
-  localStorage.removeItem('colors');
-  localStorage.removeItem('sectionsProducts');
+  // localStorage.removeItem('users');
+  // localStorage.removeItem('comments');
+  // localStorage.removeItem('modalProduct');
+  // localStorage.removeItem('colors');
+  // localStorage.removeItem('sectionsProducts');
 }
 };
 };
@@ -1456,14 +1447,15 @@ if(url == '/cart.html' || url == '/dailywebshop/cart.html'){
  
  window.onload = function(){
   if(cart){
+    getProductQuantity();
     totalPrice();
     deleteProduct('cart');
-    localStorage.removeItem('users');
-    localStorage.removeItem('comments');
-    localStorage.removeItem('modalProduct');
-    localStorage.removeItem('colors');
-    localStorage.removeItem('sectionsProducts');
-    getProductQuantity();
+    // localStorage.removeItem('users');
+    // localStorage.removeItem('comments');
+    // localStorage.removeItem('modalProduct');
+    // localStorage.removeItem('colors');
+    // localStorage.removeItem('sectionsProducts');
+  
   }
   let cartTitles = document.querySelectorAll('.table .aa-cart-title');
   let checkoutBtn = document.querySelector('.checkout-cart');
@@ -1487,11 +1479,11 @@ if(url == '/cart.html' || url == '/dailywebshop/cart.html'){
 }
 if(url == '/checkout.html' || url == '/dailywebshop/checkout.html'){
   window.onload = function(){
-    localStorage.removeItem('users');
-    localStorage.removeItem('comments');
-    localStorage.removeItem('modalProduct');
-    localStorage.removeItem('colors');
-    localStorage.removeItem('sectionsProducts');
+    // localStorage.removeItem('users');
+    // localStorage.removeItem('comments');
+    // localStorage.removeItem('modalProduct');
+    // localStorage.removeItem('colors');
+    // localStorage.removeItem('sectionsProducts');
     validation();
     if(cart == null || cart.length == 0 || cartForCheckout == null || cartForCheckout.length == 0){
       location.href = 'index.html';
