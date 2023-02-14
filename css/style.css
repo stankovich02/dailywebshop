@@ -662,9 +662,15 @@ img {
 }
 #menu .menu-area .navbar-default .navbar-nav li a {
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px 15px;
-  transition: all 0.5s;
+  transition: all 0.3s;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+#menu .menu-area .navbar-default .navbar-nav li a:hover, #menu .menu-area .navbar-default .navbar-nav li a:focus {
+  background-color: #cfcfcf;
+  color: #1c1c1c;
 }
 #menu .menu-area .navbar-default .navbar-nav .open a {
   background-color: #fff;
@@ -1916,6 +1922,7 @@ img {
   font-size: 20px;
   font-weight: bold;
   text-transform: uppercase;
+  cursor: pointer;
 }
 #aa-product-category .aa-sidebar .aa-sidebar-widget #gen {
   margin-top: 0px;
@@ -3058,6 +3065,7 @@ min-width: 40px;
 #aa-blog-archive .aa-blog-archive-area .aa-blog-sidebar .aa-sidebar-widget h3 {
   margin-top: 5px;
   padding-bottom: 10px;
+  cursor: pointer;
 }
 #aa-blog-archive .aa-blog-archive-area .aa-blog-sidebar .aa-sidebar-widget .aa-catg-nav li a {
 

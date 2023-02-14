@@ -27,7 +27,7 @@ function formatErrorMessage(jqXHR, exception) {
   } else {
       return ('Uncaught Error.\n' + jqXHR.responseText);
   }
-}
+};
 if(!localStorage.getItem('wishlist')){
  addToLocalStorage('wishlist', []);
 }
@@ -42,9 +42,6 @@ let comments = fetch(BASEURL + 'comments.json')
 ajaxCallBack('categories.json', function(data){
   addToLocalStorage('categories', data);
 });
-// ajaxCallBack('blogs.json', function(data){
-//   addToLocalStorage('allBlogs', data);
-// });
 ajaxCallBack('productsSections.json' , function(data){
   addToLocalStorage('sectionsProducts', data);
 });
@@ -1074,6 +1071,9 @@ function getFromLocalStorage(key){
 function addToLocalStorage(key, value){
   localStorage.setItem(key, JSON.stringify(value));
 };
+function removeFromLocalStorage(value){
+  localStorage.removeItem(value);
+};
 if(url.includes('/index.html')){  
   ajaxCallBack('products.json', function(data){
     indexProducts(data,'male','#men .aa-product-catg');
@@ -1083,6 +1083,7 @@ if(url.includes('/index.html')){
   window.onload = function(){
     addingProducts('.wish-btn','wishlist');
     addingProducts('.cart-btn','cart');
+    removeFromLocalStorage('cartForCheckout');
     mailCheck();
     ajaxCallBack('blogs.json', function(blogs){
     printBlogs(blogs);
@@ -1112,13 +1113,21 @@ if(url.includes('/blog-archive-2.html')){
       });
     });
   });
+  window.onload = function(){
+    removeFromLocalStorage('modalProduct');
+    removeFromLocalStorage('clickedProduct');
+    removeFromLocalStorage('cartForCheckout');
+  };
 };
 if(url.includes('/blog-single.html')){
   window.onload = function(){
-    ajaxCallBack('blogs.json', function(blogs){
     // localStorage.removeItem('modalProduct');
     // localStorage.removeItem('colors');
     // localStorage.removeItem('sectionsProducts');
+    removeFromLocalStorage('modalProduct');
+    removeFromLocalStorage('clickedProduct');
+    removeFromLocalStorage('cartForCheckout');
+    ajaxCallBack('blogs.json', function(blogs){
       let clickedBlog = getFromLocalStorage('clickedBlog');
       let usersFromLocalStorage = getFromLocalStorage('users');    
       let blogContent = document.querySelector('.aa-blog-content');
@@ -1185,9 +1194,6 @@ ajaxCallBack('products.json', function(data){
   printProducts(data);
   printSidebar(data);
 });
-ajaxCallBack('colors.json', function(data){
-  addToLocalStorage('colors', data);
-});
 let priceFilerUpper = document.querySelector('#skip-value-upper');
 let priceFilerLower = document.querySelector('#skip-value-lower');
 priceFilerLower.addEventListener('DOMSubtreeModified', function(){
@@ -1206,9 +1212,9 @@ search.addEventListener('keyup', function(){
 });
 window.onload= function(){
   addingProducts('.wish-btn','wishlist');
-  addingProducts('.cart-btn','cart'); 
-  // localStorage.removeItem('users');
-  // localStorage.removeItem('comments');
+  addingProducts('.cart-btn','cart');
+  removeFromLocalStorage('clickedBlog');
+  removeFromLocalStorage('cartForCheckout');
   let genders = document.querySelectorAll('.input-gender input')
   let categories = document.querySelectorAll('.input-category input');
   let brands = document.querySelectorAll('.input-brand input');
@@ -1218,7 +1224,6 @@ window.onload= function(){
   let filtersColor = document.querySelector('.aa-sidebar-widget .aa-color-tag');
   let filterNames = document.querySelectorAll('.aa-sidebar-widget h3');
   filterNames.forEach(filterName => {
-    filterName.style.cursor = 'pointer';
     filterName.addEventListener('click', function(){
       if(filterName.innerHTML == 'Shop By Price'){
         let priceSlider = filterName.parentElement.children[1].children[0];
@@ -1231,11 +1236,9 @@ window.onload= function(){
       }
       else{
       if(filterName.nextElementSibling.style.display == 'none'){
-        // $(filterName).next().css('display','block');
         $(filterName).next().slideDown();
       }
       else{
-        // $(filterName).next().css('display','none');
         $(filterName).next().slideUp();
       }
     }
@@ -1354,6 +1357,7 @@ if(url.includes('/product-detail.html')){
   window.onload= function(){
     addingProducts('.wish-btn','wishlist');
     addingProducts('.cart-btn','cart');
+    removeFromLocalStorage('cartForCheckout');
     // localStorage.removeItem('users');
     // localStorage.removeItem('comments');
   } 
@@ -1389,6 +1393,10 @@ if(url.includes('/wishlist.html')){
 window.onload = function(){
   addingProducts('.cart-btn','cart');
   deleteProduct('wishlist');
+  removeFromLocalStorage('clickedBlog');
+  removeFromLocalStorage('clickedProduct');
+  removeFromLocalStorage('modalProduct');
+  removeFromLocalStorage('cartForCheckout');
   // localStorage.removeItem('users');
   // localStorage.removeItem('comments');
   // localStorage.removeItem('modalProduct');
@@ -1424,25 +1432,20 @@ if(url.includes('/cart.html')){
       }
     })
   }
-  
-
+  window.onload = function(){
+    if(cart){
+      getProductQuantity();
+      totalPrice();
+      deleteProduct('cart');
+      removeFromLocalStorage('clickedBlog');
+      removeFromLocalStorage('clickedProduct');
+      removeFromLocalStorage('modalProduct');
+      removeFromLocalStorage('cartForCheckout');
+    }
   $('.clear-cart').click(function(){
     localStorage.removeItem('cart');
     location.reload();
   });
- 
- window.onload = function(){
-  if(cart){
-    getProductQuantity();
-    totalPrice();
-    deleteProduct('cart');
-    // localStorage.removeItem('users');
-    // localStorage.removeItem('comments');
-    // localStorage.removeItem('modalProduct');
-    // localStorage.removeItem('colors');
-    // localStorage.removeItem('sectionsProducts');
-  
-  }
   let cartTitles = document.querySelectorAll('.table .aa-cart-title');
   let checkoutBtn = document.querySelector('.checkout-cart');
   checkoutBtn.addEventListener('click', function(){
@@ -1488,4 +1491,12 @@ if(url.includes('/checkout.html')){
   let cart = getFromLocalStorage('cart');
   let cartTotalPrice = document.querySelector('.aa-order-summary-area .table tfoot tr td');
 
+};
+if(url.includes('/author.html')){
+  window.onload = function(){
+    removeFromLocalStorage('clickedBlog');
+    removeFromLocalStorage('clickedProduct');
+    removeFromLocalStorage('modalProduct');
+    removeFromLocalStorage('cartForCheckout');
+  };
 };
