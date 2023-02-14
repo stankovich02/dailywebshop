@@ -407,17 +407,8 @@ function productModalView(){
 });
 };
 function singlePageBlog(button){
-  // let blogTitle = button.parentElement.parentElement.parentElement.querySelector('.aa-blog-title a').innerHTML;
   let blogId = parseInt(button.getAttribute('data-blogid'));
   addToLocalStorage('clickedBlog', {"id": blogId});
-  // ajaxCallBack('blogs.json', function(blogs){
-  //     blogs.forEach(blog => {
-  //         if(blog.title == blogTitle){
-  //             addToLocalStorage('clickedBlog', blog);
-  //             window.location.href = 'blog-single.html';
-  //         }
-  //     });          
-  //     });
 };
 function numberOfComments(comments,blog){
   let commArray = [];
@@ -1083,7 +1074,7 @@ function getFromLocalStorage(key){
 function addToLocalStorage(key, value){
   localStorage.setItem(key, JSON.stringify(value));
 };
-if(url == '/index.html' || url == '/dailywebshop/index.html'){  
+if(url.includes('/index.html')){  
   ajaxCallBack('products.json', function(data){
     indexProducts(data,'male','#men .aa-product-catg');
     indexProducts(data, 'female', '#women .aa-product-catg');
@@ -1159,7 +1150,7 @@ if(url == '/blog-single.html' || url == '/dailywebshop/blog-single.html'){
         
           </div>
           <div class="blog-single-bottom">
-            <div class="row">
+            <div class="row all-tags">
               <div class="col-md-8 col-sm-6 col-xs-12">
                 <div class="blog-single-tag">
                   <span>Tags: ${printBlogTags(blog.tags)}</span>
