@@ -103,7 +103,7 @@ function productDiscount(product){
       returnValue = `<span class="aa-product-price">$${product.price.activePrice}</span>`;
     }
     else{
-      returnValue = `<span class="aa-product-price">$${product.price.activePrice} </span> <span class="aa-product-price"><del>$${product.price.oldPrice}</del> <span class="red-discount">(-${product.discountPercent}%)</span></span>`;
+      returnValue = `<span class="aa-product-price">$${product.price.activePrice} </span> <span class="aa-product-price old-price"><del>$${product.price.oldPrice}</del></span> <span class="red-discount">(-${product.discountPercent}%)</span>`;
     }
     return returnValue;
 };
@@ -569,7 +569,18 @@ function mailCheck(){
     }
     else{
       message.className = '';
+      if(url.includes('index.html')){
       message.textContent = 'Thanks for subscribing to our newsletter!';
+      }
+      if(url.includes('product-detail.html')){
+      let products = getFromLocalStorage('allProducts');
+      let clickedProduct = getFromLocalStorage('clickedProduct');
+      products.forEach(product => {
+        if(product.id == clickedProduct.id){
+          message.innerHTML = `Thanks. You'll get email update when <span class="black-pr">${product.name}</span> becomes available.`;
+        }
+      });
+      }
       email.value = '';
     }
   });
@@ -1279,6 +1290,7 @@ if(url.includes('/product-detail.html')){
   let clickedProduct = getFromLocalStorage('clickedProduct');
   let categories = getFromLocalStorage('categories');
   let sections = getFromLocalStorage('sectionsProducts');
+  let getNotified = document.querySelector('#aa-getnotified');
   productInfoWrapper.innerHTML = '';
   ajaxCallBack('products.json', function(products){
     products.forEach(product => {
@@ -1324,6 +1336,19 @@ if(url.includes('/product-detail.html')){
                         </div>
                       </div>
         `;
+        console.log(getNotified)
+        if(product.productsSectionId == 2){
+          getNotified.innerHTML = `
+          <div class="aa-subscribe-area">
+          <h3>Receive a notification when this product becomes available.</h3>
+          <form action="" class="aa-subscribe-form">
+            <input type="email" name="email" id="" placeholder="Enter your Email">
+            <input type="button" value="Get notified">
+          </form>
+          <span id="message" class="error"></span>
+        </div>
+          `;
+        }
       }
     });
     let relatedProductsWrapper = document.querySelector('.aa-product-catg');
@@ -1358,6 +1383,7 @@ if(url.includes('/product-detail.html')){
     addingProducts('.wish-btn','wishlist');
     addingProducts('.cart-btn','cart');
     removeFromLocalStorage('cartForCheckout');
+    mailCheck();
     // localStorage.removeItem('users');
     // localStorage.removeItem('comments');
   } 

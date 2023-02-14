@@ -1213,8 +1213,12 @@ img {
 .aa-product-catg li .aa-product-price {
   font-weight: bold;
   letter-spacing: 0.5px;
-  font-size: 18px;
+  font-size: 20px;
   color: #000;
+}
+.old-price {
+ opacity: 0.5;
+ font-size: 18px!important;
 }
 .aa-price-block .aa-product-price {
   font-size: 18px;
@@ -1290,6 +1294,7 @@ img {
 .red-discount{
   color: #ff0000;
   font-size: 18px;
+  font-weight: bold;
 }
 .pr-btns, .cart-btn{
   cursor: pointer;
@@ -1536,6 +1541,38 @@ img {
   display: flex;
   justify-content: center;
 
+}
+#aa-getnotified{
+  display: flex;
+  justify-content: center;
+}
+#aa-getnotified .aa-subscribe-area{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#aa-getnotified .aa-subscribe-form{
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+}
+#aa-getnotified .aa-subscribe-form input[type="email"]{
+  padding: 5px;
+  width: 70%;
+}
+#aa-getnotified .aa-subscribe-form input[type="button"]{
+color: #fff;
+font-size: 15px;
+font-weight: bold;
+margin-left: 10px;
+padding: 5px 10px;
+letter-spacing: 1px;
+border-radius: 5px;
+text-transform: uppercase;
+background-color: #1c1c1c;
+}
+.black-pr{
+  font-weight: bold;
 }
 /*==================
   BANNER SECTION
