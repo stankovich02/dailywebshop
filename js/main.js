@@ -204,7 +204,7 @@ if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
                     </div>
                 `;
     }
-}
+};
 };
 function UsersAndTheirBlogs(users,blog){
   let returnValue = '';
@@ -347,7 +347,7 @@ function productsAndTheirColors(product){
   }
  });
   return returnValue;
-}
+};
 function productsAndTheirCategories(product,categories){
     let returnValue = '';
     categories.forEach(category => {
@@ -418,7 +418,7 @@ function numberOfComments(comments,blog){
     }
   });
   return commArray.length;
-}
+};
 function printProducts(products){
   let productsContainer = document.querySelector('.aa-product-catg');
   let sections = getFromLocalStorage('sectionsProducts');
@@ -576,7 +576,7 @@ function mailCheck(){
       email.value = '';
     }
   });
-}
+};
 function deleteProduct(type)
 {
   let deleteProductBtn = document.querySelectorAll('.aa-remove-product');
@@ -616,11 +616,11 @@ function deleteProduct(type)
       }
   }
   )}
-}
+};
 function productTotalPrice(quantity,price){
   let total = quantity * price;
   return total;
-}
+};
 function totalPrice(){
   let totalPrice = document.querySelector('#TotalCartPrice');
   let totalProductPrice = document.querySelectorAll('#totalProductPrice');
@@ -629,7 +629,7 @@ function totalPrice(){
     sum += parseInt(item.innerHTML.slice(1));
   });
   totalPrice.innerHTML = `$${sum}`;
-}
+};
 function getProductQuantity(){
   let pluses = document.querySelectorAll('.plus');
   let minuses = document.querySelectorAll('.minus');
@@ -667,7 +667,7 @@ function getProductQuantity(){
     }
    
   }));
-}
+};
 function changeProducts(){
   let products = getFromLocalStorage('allProducts');
   
@@ -690,7 +690,7 @@ function changeProducts(){
 
   addingProducts('.wish-btn','wishlist');
   addingProducts('.cart-btn','cart');
-}
+};
 function changeBlogs(){
   ajaxCallBack("blogs.json", function(blogs){
   blogs = filterBlogs(blogs, 'category', 'genderId');
@@ -705,7 +705,7 @@ function changeBlogs(){
   printBlogs(blogs);
 });
   
-}
+};
 function filterProducts(products, type, filter){
   let filteredProducts;
   let brandArr = [];
@@ -832,7 +832,7 @@ function filterBlogs(blogs, type, filter){
     }
   }
   return filteredBlogs;
-}
+};
 function sortProducts(products){
   let sortValue = document.querySelector('#sortProducts').value;
   if(sortValue == 'default'){
@@ -865,7 +865,7 @@ function sortProducts(products){
     });
   }
   return products;
-}
+};
 function searchProducts(products){
   let searchValue = document.querySelector('#searchProducts').value;
   let filteredProducts = [];
@@ -875,7 +875,7 @@ function searchProducts(products){
   else{
     return products.filter(product => product.name.toLowerCase().includes(searchValue.toLowerCase()));
   }
-}
+};
 var countErrors = 0;
 function validateInput(input,regex,type){
   if(type == 'country'){
@@ -945,7 +945,7 @@ function validateInput(input,regex,type){
   }
 }
   return countErrors;
-}
+};
 function validation(){
   const firstName = document.querySelector('input[name="first_name"]');
   const lastName = document.querySelector('input[name="last_name"]');
@@ -1055,7 +1055,7 @@ function validation(){
       });
     };
   });
-}
+};
 function printBlogTags(blogTags){
   let returnValue = '';
   for(let i = 0; i < blogTags.length; i++){
@@ -1067,10 +1067,10 @@ function printBlogTags(blogTags){
     }
   }
   return returnValue;
-}
+};
 function getFromLocalStorage(key){
   return JSON.parse(localStorage.getItem(key));
-}
+};
 function addToLocalStorage(key, value){
   localStorage.setItem(key, JSON.stringify(value));
 };
@@ -1089,12 +1089,7 @@ if(url.includes('/index.html')){
     });
   }
 };
-if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
-  // window.onload = function(){
-  //   localStorage.removeItem('modalProduct');
-  //   localStorage.removeItem('colors');
-  //   localStorage.removeItem('sectionsProducts');
-  // };
+if(url.includes('/blog-archive-2.html')){
   ajaxCallBack('blogs.json', function(blogs){
   printBlogs(blogs);
     let categories = document.querySelectorAll('.aa-catg-nav li a');
@@ -1118,7 +1113,7 @@ if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
     });
   });
 };
-if(url == '/blog-single.html' || url == '/dailywebshop/blog-single.html'){
+if(url.includes('/blog-single.html')){
   window.onload = function(){
     ajaxCallBack('blogs.json', function(blogs){
     // localStorage.removeItem('modalProduct');
@@ -1184,7 +1179,7 @@ if(url == '/blog-single.html' || url == '/dailywebshop/blog-single.html'){
     });
   };
 };
-if(url == '/products.html' || url == '/dailywebshop/products.html'){
+if(url.includes('/products.html')){
 ajaxCallBack('products.json', function(data){
   addToLocalStorage('allProducts', data);
   printProducts(data);
@@ -1276,7 +1271,7 @@ window.onload= function(){
   });
 }
 };
-if(url == '/product-detail.html' || url == '/dailywebshop/product-detail.html'){
+if(url.includes('/product-detail.html')){
  let productInfoWrapper = document.querySelector('.aa-product-details-content .row');
   let clickedProduct = getFromLocalStorage('clickedProduct');
   let categories = getFromLocalStorage('categories');
@@ -1363,7 +1358,7 @@ if(url == '/product-detail.html' || url == '/dailywebshop/product-detail.html'){
     // localStorage.removeItem('comments');
   } 
 };
-if(url == '/wishlist.html' || url == '/dailywebshop/wishlist.html'){
+if(url.includes('/wishlist.html')){
   let wishlistWrapper = document.querySelector('.table tbody');
   let table = document.querySelector('#cart-view .container');
   let wishlist = getFromLocalStorage('wishlist');
@@ -1402,7 +1397,7 @@ window.onload = function(){
 }
 };
 };
-if(url == '/cart.html' || url == '/dailywebshop/cart.html'){
+if(url.includes('/cart.html')){
   let cartWrapper = document.querySelector('.table tbody');
   let table = document.querySelector('#cart-view .container');
   let cart = getFromLocalStorage('cart');
@@ -1467,8 +1462,8 @@ if(url == '/cart.html' || url == '/dailywebshop/cart.html'){
   });
  
  };
-}
-if(url == '/checkout.html' || url == '/dailywebshop/checkout.html'){
+};
+if(url.includes('/checkout.html')){
   window.onload = function(){
     // localStorage.removeItem('users');
     // localStorage.removeItem('comments');
