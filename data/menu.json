@@ -1,23 +1,28 @@
 [
     {
-        "id": "1",
+        "id": 1,
         "name": "Home",
         "href": "index.html"
     },
     {
-        "id": "2",
+        "id": 2,
         "name": "Products",
         "href": "products.html"
     },
     {
-        "id": "3",
+        "id": 3,
         "name": "Blogs",
         "href": "blog-archive-2.html"
     },
     {
-        "id": "4",
+        "id": 4,
         "name": "Author",
         "href": "author.html"
+    },
+    {
+        "id": 5,
+        "name": "Wishlist",
+        "href": "wishlist.html"
     }
 
 ]

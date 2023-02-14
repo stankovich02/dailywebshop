@@ -668,6 +668,9 @@ img {
   font-weight: 500;
   text-transform: uppercase;
 }
+#menu .menu-area .navbar-default .navbar-nav li:last-child{
+ display: none;
+}
 #menu .menu-area .navbar-default .navbar-nav li a:hover, #menu .menu-area .navbar-default .navbar-nav li a:focus {
   background-color: #cfcfcf;
   color: #1c1c1c;
@@ -3883,6 +3886,9 @@ min-width: 40px;
     display: flex;
     flex-direction: column;
   }
+  #menu .menu-area .navbar-default .navbar-nav li:last-child{
+    display: block;
+   }
   .navbar-default .navbar-toggle,
   .navbar-default .navbar-toggle {
     border-radius: 0;
