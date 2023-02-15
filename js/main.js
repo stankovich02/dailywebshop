@@ -206,12 +206,13 @@ if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
   let BlogsWrapper = document.querySelector('.aa-blog-content .row');
   let comments = getFromLocalStorage('comments');
   BlogsWrapper.innerHTML = '';
+  if(window.innerWidth > 768){
   for(let i = 0; i < sortedBlogs.length; i++){
     BlogsWrapper.innerHTML += `
                     <div class="col-md-4 col-sm-4">
                       <div class="aa-latest-blog-single">
                         <figure class="aa-blog-img">                    
-                          <a href="#"><img src="${sortedBlogs[i].image}" alt="${sortedBlogs[i].title}"></a>  
+                          <a href="#"><img src="${sortedBlogs[i].images.small}" alt="${sortedBlogs[i].title}"></a>  
                             <figcaption class="aa-blog-img-caption">
                             <span href="#"><i class="fa fa-eye"></i>${socialNumbers(sortedBlogs[i].viewsCount)}</span>
                             <a href="#"><i class="fa fa-thumbs-o-up"></i>${socialNumbers(sortedBlogs[i].likesCount)}</a>
@@ -228,6 +229,31 @@ if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
                     </div>
                 `;
     }
+  }
+  else{
+    for(let i = 0; i < sortedBlogs.length; i++){
+      BlogsWrapper.innerHTML += `
+                      <div class="col-md-4 col-sm-4">
+                        <div class="aa-latest-blog-single">
+                          <figure class="aa-blog-img">                    
+                            <a href="#"><img src="${sortedBlogs[i].images.large}" alt="${sortedBlogs[i].title}"></a>  
+                              <figcaption class="aa-blog-img-caption">
+                              <span href="#"><i class="fa fa-eye"></i>${socialNumbers(sortedBlogs[i].viewsCount)}</span>
+                              <a href="#"><i class="fa fa-thumbs-o-up"></i>${socialNumbers(sortedBlogs[i].likesCount)}</a>
+                              <a href="#"><i class="fa fa-comment-o"></i>${numberOfComments(comments,sortedBlogs[i])}</a>
+                              <span href="#"><i class="fa fa-clock-o"></i>${dateOfBlogs(sortedBlogs[i].createdAt)}</span>
+                            </figcaption>                          
+                          </figure>
+                          <div class="aa-blog-info">
+                            <h3 class="aa-blog-title"><a href="#">${sortedBlogs[i].title}</a></h3>
+                            <p>${sortedBlogs[i].contentForShortBlog}</p> 
+                            <a href="blog-single.html" class="aa-read-mor-btn" data-blogid="${sortedBlogs[i].id}" onclick="singlePageBlog(this)">Read more <span class="fa fa-long-arrow-right"></span></a>
+                          </div>
+                        </div>
+                      </div>
+                  `;
+  }
+}
 };
 };
 function UsersAndTheirBlogs(users,blog){
@@ -1185,7 +1211,7 @@ if(url.includes('/blog-single.html')){
             </div>
           </div>
           <figure class="aa-blog-img">
-            <a><img src="${blog.image}" alt="fashion img"></a>
+            <a><img src="${blog.images.small}" alt="fashion img"></a>
           </figure>
           <span>${blog.content}</span>
           <div>
