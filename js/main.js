@@ -451,7 +451,7 @@ function printProducts(products){
     productsContainer.innerHTML += `
     <li>
     <figure>
-      <a class="aa-product-img" href="product-detail.html" data-prid="${product.id}" onclick="storeSingleProductToLS(this)"><img src="${product.image}" alt="${product.name}"></a>
+      <a class="aa-product-img" href="product-detail.html" data-prid="${product.id}" onclick="storeSingleProductToLS(this)"><img src="${product.image}" alt="${product.name}"></a>    
       ${disableCartButton(product,'hover')}
       <figcaption>
         <h4 class="aa-product-title"><a>${product.name}</a></h4>
@@ -1233,8 +1233,17 @@ ajaxCallBack('products.json', function(data){
   printSidebar(data);
 });
 let filter = document.querySelector('#filter-pr');
+let filterProducts = document.querySelector('.filter-products-side');
 filter.addEventListener('click', function(){
-  document.querySelector('.filter-products-side').style.display = 'block';
+ filterProducts.classList.add('active-filter');
+  $('html, body').animate({scrollTop : 0},500);
+  $('#pr-overlay').css('display', 'block');
+  $('body').css('overflow', 'hidden');
+});
+document.querySelector('#pr-overlay').addEventListener('click', function(){
+  filterProducts.classList.remove('active-filter');
+  $('#pr-overlay').css('display', 'none');
+  $('body').css('overflow', 'auto');
 });
 let priceFilerUpper = document.querySelector('#skip-value-upper');
 let priceFilerLower = document.querySelector('#skip-value-lower');
@@ -1313,6 +1322,15 @@ window.onload= function(){
     section.addEventListener('click', function(){
       changeProducts();
     });
+  });
+  let prView = document.querySelector('.aa-product-catg');
+  window.addEventListener('resize', function(){
+  if(window.innerWidth < 768){
+    prView.classList.add("list");
+  }
+  else{
+    prView.classList.remove("list");
+  }
   });
 }
 };
