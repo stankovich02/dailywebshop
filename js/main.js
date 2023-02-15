@@ -152,27 +152,54 @@ if(url == '/index.html' || url == '/dailywebshop/index.html'){
 let latestBlogsWrapper = document.querySelector(`.aa-latest-blog-area .row`);
 let comments = getFromLocalStorage('comments');
 latestBlogsWrapper.innerHTML = '';
-for(let i = 0; i < 3; i++){
-  latestBlogsWrapper.innerHTML += `
-                <div class="col-md-4 col-sm-4">
-                  <div class="aa-latest-blog-single">
-                    <figure class="aa-blog-img">                    
-                      <a><img src="${sortedBlogs[i].image}" alt="${sortedBlogs[i].title}"></a>  
-                        <figcaption class="aa-blog-img-caption">
-                        <span><i class="fa fa-eye"></i>${socialNumbers(sortedBlogs[i].viewsCount)}</span>
-                        <a><i class="fa fa-thumbs-o-up"></i>${socialNumbers(sortedBlogs[i].likesCount)}</a>
-                        <a><i class="fa fa-comment-o"></i>${numberOfComments(comments,sortedBlogs[i])}</a>
-                        <span><i class="fa fa-clock-o"></i>${dateOfBlogs(sortedBlogs[i].createdAt)}</span>
-                      </figcaption>                          
-                    </figure>
-                    <div class="aa-blog-info">
-                      <h3 class="aa-blog-title"><a>${sortedBlogs[i].title}</a></h3>
-                      <p>${sortedBlogs[i].contentForShortBlog}</p> 
-                      <a href="blog-single.html" class="aa-read-mor-btn" data-blogid="${sortedBlogs[i].id}" onclick="singlePageBlog(this)">Read more <span class="fa fa-long-arrow-right"></span></a>
+if(window.innerWidth > 768){
+  for(let i = 0; i < 3; i++){
+    latestBlogsWrapper.innerHTML += `
+                  <div class="col-md-4 col-sm-4">
+                    <div class="aa-latest-blog-single">
+                      <figure class="aa-blog-img">                    
+                        <a><img src="${sortedBlogs[i].images.small}" alt="${sortedBlogs[i].title}"></a>  
+                          <figcaption class="aa-blog-img-caption">
+                          <span><i class="fa fa-eye"></i>${socialNumbers(sortedBlogs[i].viewsCount)}</span>
+                          <a><i class="fa fa-thumbs-o-up"></i>${socialNumbers(sortedBlogs[i].likesCount)}</a>
+                          <a><i class="fa fa-comment-o"></i>${numberOfComments(comments,sortedBlogs[i])}</a>
+                          <span><i class="fa fa-clock-o"></i>${dateOfBlogs(sortedBlogs[i].createdAt)}</span>
+                        </figcaption>                          
+                      </figure>
+                      <div class="aa-blog-info">
+                        <h3 class="aa-blog-title"><a>${sortedBlogs[i].title}</a></h3>
+                        <p>${sortedBlogs[i].contentForShortBlog}</p> 
+                        <a href="blog-single.html" class="aa-read-mor-btn" data-blogid="${sortedBlogs[i].id}" onclick="singlePageBlog(this)">Read more <span class="fa fa-long-arrow-right"></span></a>
+                      </div>
                     </div>
                   </div>
-                </div>
-            `;
+              `;
+  }
+  }
+  else{
+    for(let i = 0; i < 3; i++){
+      latestBlogsWrapper.innerHTML += `
+                    <div class="col-md-4 col-sm-4">
+                      <div class="aa-latest-blog-single">
+                        <figure class="aa-blog-img">                    
+                          <a><img src="${sortedBlogs[i].images.large}" alt="${sortedBlogs[i].title}"></a>  
+                            <figcaption class="aa-blog-img-caption">
+                            <span><i class="fa fa-eye"></i>${socialNumbers(sortedBlogs[i].viewsCount)}</span>
+                            <a><i class="fa fa-thumbs-o-up"></i>${socialNumbers(sortedBlogs[i].likesCount)}</a>
+                            <a><i class="fa fa-comment-o"></i>${numberOfComments(comments,sortedBlogs[i])}</a>
+                            <span><i class="fa fa-clock-o"></i>${dateOfBlogs(sortedBlogs[i].createdAt)}</span>
+                          </figcaption>                          
+                        </figure>
+                        <div class="aa-blog-info">
+                          <h3 class="aa-blog-title"><a>${sortedBlogs[i].title}</a></h3>
+                          <p>${sortedBlogs[i].contentForShortBlog}</p> 
+                          <a href="blog-single.html" class="aa-read-mor-btn" data-blogid="${sortedBlogs[i].id}" onclick="singlePageBlog(this)">Read more <span class="fa fa-long-arrow-right"></span></a>
+                        </div>
+                      </div>
+                    </div>
+                `;
+    }
+    
 }
 }
 if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
@@ -1204,6 +1231,10 @@ ajaxCallBack('products.json', function(data){
   addToLocalStorage('allProducts', data);
   printProducts(data);
   printSidebar(data);
+});
+let filter = document.querySelector('#filter-pr');
+filter.addEventListener('click', function(){
+  document.querySelector('.filter-products-side').style.display = 'block';
 });
 let priceFilerUpper = document.querySelector('#skip-value-upper');
 let priceFilerLower = document.querySelector('#skip-value-lower');
