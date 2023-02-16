@@ -209,7 +209,7 @@ if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
   if(window.innerWidth > 768){
   for(let i = 0; i < sortedBlogs.length; i++){
     BlogsWrapper.innerHTML += `
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-4 col-sm-6">
                       <div class="aa-latest-blog-single">
                         <figure class="aa-blog-img">                    
                           <a href="#"><img src="${sortedBlogs[i].images.small}" alt="${sortedBlogs[i].title}"></a>  
@@ -233,7 +233,7 @@ if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
   else{
     for(let i = 0; i < sortedBlogs.length; i++){
       BlogsWrapper.innerHTML += `
-                      <div class="col-md-4 col-sm-4">
+                      <div class="col-md-4 col-sm-6">
                         <div class="aa-latest-blog-single">
                           <figure class="aa-blog-img">                    
                             <a href="#"><img src="${sortedBlogs[i].images.large}" alt="${sortedBlogs[i].title}"></a>  
@@ -649,12 +649,15 @@ function deleteProduct(type)
       let productId = this.getAttribute('data-prid');
       let idNumber = parseInt(productId);
       let item = getFromLocalStorage(type);
-      const newItem = item.filter((product) => product.id !== idNumber);
+      const newItem = item.filter(product => product.id !== idNumber);
       let index = item.indexOf(productId);
       item.splice(index, 1);
       addToLocalStorage(type, newItem);
-      this.parentElement.parentElement.remove();
+      if(type == 'wishlist'){
+        this.parentElement.parentElement.parentElement.remove();
+      }
       if(type == 'cart'){
+        this.parentElement.parentElement.remove();
         let numberInCart = document.querySelector('.aa-cart-notify');
         numberInCart.innerHTML = getFromLocalStorage('cart').length;
         let totalPriceFromDeleted = this.parentElement.parentElement.children[5].innerHTML.slice(1);
@@ -666,12 +669,14 @@ function deleteProduct(type)
         localStorage.removeItem(type);
         if(type == 'cart'){
         table.innerHTML = `<h1 class="text-center empty-cart">Your cart is empty.</h1>
-                            <br/>
+                            
                             <a href="products.html" class="aa-browse-btn">Browse Products...</a>`;
         }
         if(type == 'wishlist'){
-          table.innerHTML = `<h1 class="text-center empty-cart">Your wishlist is empty.</h1>
-                            <br/>
+          let wishlistWrapper = document.querySelector('.cart-view-area');
+          wishlistWrapper.style.flexDirection = 'column!important';
+          wishlistWrapper.innerHTML = `<h1 class="text-center empty-cart">Your wishlist is empty.</h1>
+                          
                             <a href="products.html" class="aa-browse-btn">Browse Products...</a>`;
         }
       }
@@ -756,10 +761,13 @@ function changeBlogs(){
   ajaxCallBack("blogs.json", function(blogs){
   blogs = filterBlogs(blogs, 'category', 'genderId');
   blogs = filterBlogs(blogs, 'tag', 'tags');
+ 
   if(blogs.length == 0){
+    document.querySelector('#aler-pr').style.display = 'block';
     document.querySelector('#aler-pr').innerHTML = `Sorry! We currently do not have any products that match Your criterium!`;
   }
   else{
+    document.querySelector('#aler-pr').style.display = 'none';
     document.querySelector('#aler-pr').innerHTML = '';
   }
 
@@ -1159,6 +1167,21 @@ if(url.includes('/blog-archive-2.html')){
   printBlogs(blogs);
     let categories = document.querySelectorAll('.aa-catg-nav li a');
     let tags = document.querySelectorAll('.tag-cloud a');
+    let filterNames = document.querySelectorAll('.aa-sidebar-widget h3');
+    document.querySelector('#aler-pr').style.display = 'none';
+    filterNames.forEach(filterName => {
+      $(filterName).next().css('display','none');
+    });
+    filterNames.forEach(filterName => {
+      filterName.addEventListener('click', function(){
+        if(filterName.nextElementSibling.style.display == 'none'){
+          $(filterName).next().slideDown();
+        }
+        else{
+          $(filterName).next().slideUp();
+        }
+      });
+    });
     categories.forEach(category => {
       category.addEventListener('click', function(e){
         e.preventDefault();
@@ -1464,35 +1487,53 @@ if(url.includes('/product-detail.html')){
   } 
 };
 if(url.includes('/wishlist.html')){
-  let wishlistWrapper = document.querySelector('.table tbody');
-  let table = document.querySelector('#cart-view .container');
+  // let wishlistWrapper = document.querySelector('.table tbody');
+  let wishlistWrapper = document.querySelector('.cart-view-area');
+  // let table = document.querySelector('#cart-view .container');
   let wishlist = getFromLocalStorage('wishlist');
   wishlistWrapper.innerHTML = '';
   if(getFromLocalStorage('wishlist') == null || getFromLocalStorage('wishlist').length == 0){
-    table.innerHTML = `<h1 class="text-center empty-cart">Your wishlist is empty.</h1>
+    wishlistWrapper.innerHTML = `<h1 class="text-center empty-cart">Your wishlist is empty.</h1>
                        <br/>
                        <a href="products.html" class="aa-browse-btn">Browse Products...</a>`;
    }
   else{
   ajaxCallBack('products.json', function(data){
+    wishlistWrapper.innerHTML = '<div class="row">';
     for(let i = 0; i < wishlist.length; i++){
       for(let j = 0; j < data.length; j++){
         if(wishlist[i].id == data[j].id){
+          // wishlistWrapper.innerHTML += `
+          // <tr>
+          // <td><a class="aa-remove-product red-remove" data-prid="${data[j].id}" href="#" onclick="deleteProduct(this)"><span class="fa fa-times"></span></a></td>
+          // <td><a class="aa-cartbox-img"><img src="${data[j].image}" alt="img"></a></td>
+          // <td><a class="aa-cart-title">${data[j].name}</a></td>
+          // <td>${productPrice(data[j])}</td>
+          // <td>${productInStock(data[j])}</td>
+          // <td>${disableCartButton(data[j],'click')}</td>`;
+
+          //style="width: 18rem;"
           wishlistWrapper.innerHTML += `
-          <tr>
-          <td><a class="aa-remove-product red-remove" data-prid="${data[j].id}" href="#" onclick="deleteProduct(this)"><span class="fa fa-times"></span></a></td>
-          <td><a class="aa-cartbox-img"><img src="${data[j].image}" alt="img"></a></td>
-          <td><a class="aa-cart-title">${data[j].name}</a></td>
-          <td>${productPrice(data[j])}</td>
-          <td>${productInStock(data[j])}</td>
-          <td>${disableCartButton(data[j],'click')}</td>`;
+          <div class="card wish-card col-lg-4">
+          <img src="${data[j].image}" class="card-img-top" alt="${data[j].name}">
+          <div class="card-body">
+            <h5 class="card-title">${data[j].name}</h5>
+            <p class="card-text">${productDiscount(data[j])}</p>
+            <span>
+            <a href="#" class="btn btn-primary alert-danger aa-remove-product" data-prid="${data[j].id}">Remove product</a>
+            <a href="product-detail.html" data-prid="${data[j].id}" class="btn btn-primary" onclick="storeSingleProductToLS(this)">View product</a>
+            </span>
+          </div>
+        </div>
+          `;
         }
         }
-}
+  }
+wishlistWrapper.innerHTML += '</div>';
 }
   )
 window.onload = function(){
-  addingProducts('.cart-btn','cart');
+  // addingProducts('.cart-btn','cart');
   deleteProduct('wishlist');
   removeFromLocalStorage('clickedBlog');
   removeFromLocalStorage('clickedProduct');
@@ -1520,9 +1561,11 @@ if(url.includes('/cart.html')){
       for(let i = 0; i < cart.length; i++){
         for(let j = 0; j < data.length; j++){
           if(cart[i].id == data[j].id){
+            //<a class="aa-remove-product red-remove" href="#" data-prid="${data[j].id}" onclick="deleteProduct(this)"><span class="fa fa-times"></span></a>
             cartWrapper.innerHTML += `
             <tr>
-            <td><a class="aa-remove-product red-remove" href="#" data-prid="${data[j].id}" onclick="deleteProduct(this)"><span class="fa fa-times"></span></a></td>
+            
+            <td><a href="#" class="btn btn-primary alert-danger aa-remove-product" data-prid="${data[j].id}">Remove product</a></td>
             <td><a class="aa-cartbox-img"><img src="${data[j].image}" alt="${data[j].name}"></a></td>
             <td><a class="aa-cart-title" data-prid="${data[j].id}">${data[j].name}</a></td>
             <td>$${data[j].price.activePrice}</td>
