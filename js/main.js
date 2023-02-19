@@ -124,7 +124,7 @@ function indexProducts(products, category, divName){
             divWrapper.innerHTML += ` 
             <li>
             <figure>
-              <a class="aa-product-img" href="product-detail.html" data-prid="${filteredProducts[i].id}" onclick="storeSingleProductToLS(this)"><img src="${filteredProducts[i].image}" alt="${filteredProducts[i].name}"></a>
+              <a class="aa-product-img openProduct" href="product-detail.html" data-prid="${filteredProducts[i].id}"><img src="${filteredProducts[i].image}" alt="${filteredProducts[i].name}"></a>
               ${disableCartButton(filteredProducts[i], 'hover')}
                 <figcaption>
                 <h4 class="aa-product-title"><a href="#">${filteredProducts[i].name}</a></h4>
@@ -133,7 +133,7 @@ function indexProducts(products, category, divName){
             </figure>                        
             <div class="aa-product-hvr-content">
               <a data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o wish-btn pr-btns" data-prid="${filteredProducts[i].id}"></span></a>
-              <a data-toggle2="tooltip" data-placement="top" title="Quick View" data-prid="${filteredProducts[i].id}" data-toggle="modal" data-target="#quick-view-modal" onclick="getClickedModal(this)"><span class="fa fa-search pr-btns"></span></a>                          
+              <a class="openModal" data-toggle2="tooltip" data-placement="top" title="Quick View" data-prid="${filteredProducts[i].id}" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search pr-btns"></span></a>                          
             </div>
             <!-- product badge -->
           ${productsAndTheirSections(filteredProducts[i],sections)}
@@ -169,7 +169,7 @@ if(window.innerWidth > 768){
                       <div class="aa-blog-info">
                         <h3 class="aa-blog-title"><a>${sortedBlogs[i].title}</a></h3>
                         <p>${sortedBlogs[i].contentForShortBlog}</p> 
-                        <a href="blog-single.html" class="aa-read-mor-btn" data-blogid="${sortedBlogs[i].id}" onclick="singlePageBlog(this)">Read more <span class="fa fa-long-arrow-right"></span></a>
+                        <a href="blog-single.html" class="aa-read-mor-btn" data-blogid="${sortedBlogs[i].id}">Read more <span class="fa fa-long-arrow-right"></span></a>
                       </div>
                     </div>
                   </div>
@@ -193,7 +193,7 @@ if(window.innerWidth > 768){
                         <div class="aa-blog-info">
                           <h3 class="aa-blog-title"><a>${sortedBlogs[i].title}</a></h3>
                           <p>${sortedBlogs[i].contentForShortBlog}</p> 
-                          <a href="blog-single.html" class="aa-read-mor-btn" data-blogid="${sortedBlogs[i].id}" onclick="singlePageBlog(this)">Read more <span class="fa fa-long-arrow-right"></span></a>
+                          <a href="blog-single.html" class="aa-read-mor-btn" data-blogid="${sortedBlogs[i].id}">Read more <span class="fa fa-long-arrow-right"></span></a>
                         </div>
                       </div>
                     </div>
@@ -223,7 +223,7 @@ if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
                         <div class="aa-blog-info">
                           <h3 class="aa-blog-title"><a href="#">${sortedBlogs[i].title}</a></h3>
                           <p>${sortedBlogs[i].contentForShortBlog}</p> 
-                          <a href="blog-single.html" class="aa-read-mor-btn" data-blogid="${sortedBlogs[i].id}" onclick="singlePageBlog(this)">Read more <span class="fa fa-long-arrow-right"></span></a>
+                          <a href="blog-single.html" class="aa-read-mor-btn" data-blogid="${sortedBlogs[i].id}">Read more <span class="fa fa-long-arrow-right"></span></a>
                         </div>
                       </div>
                     </div>
@@ -247,7 +247,7 @@ if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
                           <div class="aa-blog-info">
                             <h3 class="aa-blog-title"><a href="#">${sortedBlogs[i].title}</a></h3>
                             <p>${sortedBlogs[i].contentForShortBlog}</p> 
-                            <a href="blog-single.html" class="aa-read-mor-btn" data-blogid="${sortedBlogs[i].id}" onclick="singlePageBlog(this)">Read more <span class="fa fa-long-arrow-right"></span></a>
+                            <a href="blog-single.html" class="aa-read-mor-btn" data-blogid="${sortedBlogs[i].id}">Read more <span class="fa fa-long-arrow-right"></span></a>
                           </div>
                         </div>
                       </div>
@@ -338,10 +338,17 @@ function dateOfBlogs(blogDate){
   const year = date.getFullYear();
   return month + ' ' + day + ', ' + year;
 };
-function getClickedModal(button){
-  let prId = parseInt(button.getAttribute('data-prid'));
-  addToLocalStorage('modalProduct', {"id": prId});
-  productModalView();
+function getClickedModal(){
+  let btns = document.querySelectorAll('.openModal');
+  btns.forEach(btn => {
+    btn.addEventListener('click', function(){
+      let prId = parseInt(btn.getAttribute('data-prid'));
+      addToLocalStorage('modalProduct', {"id": prId});
+      productModalView();
+     
+    });
+  });
+ 
 };
 function productPrice(product){
   let returnValue = '';
@@ -408,7 +415,13 @@ function productsAndTheirCategories(product,categories){
       return returnValue;
   
 };
+function ModalIsOpen(){
+  if($('body').hasClass('modal-open')){
+  console.log('modal is open');
+  }
+}
 function productModalView(){
+ 
   let productQuickView = document.querySelector('.modal-body .row');
   let modalProductFromLocalStorage = getFromLocalStorage('modalProduct');
   let categories = getFromLocalStorage('categories');
@@ -447,18 +460,25 @@ function productModalView(){
               </p>
             </div>
             <div class="aa-prod-view-bottom">
-              <a href="product-detail.html" class="aa-add-to-cart-btn" data-prid="${product.id}" onclick="storeSingleProductToLS(this)">View Details</a>
+              <a href="product-detail.html" class="aa-add-to-cart-btn openProduct" data-prid="${product.id}">View Details</a>
             </div>
           </div>
         </div>
           `;
+        storeSingleProductToLS();
         }
   });
-});
+  });
 };
-function singlePageBlog(button){
-  let blogId = parseInt(button.getAttribute('data-blogid'));
-  addToLocalStorage('clickedBlog', {"id": blogId});
+function singlePageBlog(){
+  let btns = document.querySelectorAll('.aa-read-mor-btn');
+  console.log(btns);
+  btns.forEach(btn => {
+    btn.addEventListener('click', function(){
+      let blogId = parseInt(btn.getAttribute('data-blogid'));
+      addToLocalStorage('clickedBlog', {"id": blogId});
+    });
+  });
 };
 function numberOfComments(comments,blog){
   let commArray = [];
@@ -477,7 +497,7 @@ function printProducts(products){
     productsContainer.innerHTML += `
     <li>
     <figure>
-      <a class="aa-product-img" href="product-detail.html" data-prid="${product.id}" onclick="storeSingleProductToLS(this)"><img src="${product.image}" alt="${product.name}"></a>    
+      <a class="aa-product-img openProduct" href="product-detail.html" data-prid="${product.id}"><img src="${product.image}" alt="${product.name}"></a>    
       ${disableCartButton(product,'hover')}
       <figcaption>
         <h4 class="aa-product-title"><a>${product.name}</a></h4>
@@ -486,16 +506,21 @@ function printProducts(products){
     </figure>                         
     <div class="aa-product-hvr-content">
       <a data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o wish-btn pr-btns" data-prid="${product.id}"></span></a>
-      <a data-toggle2="tooltip" data-placement="top" title="Quick View" data-prid="${product.id}" data-toggle="modal" data-target="#quick-view-modal" onclick="getClickedModal(this)"><span class="fa fa-search pr-btns"></span></a>                            
+      <a class="openModal" data-toggle2="tooltip" data-placement="top" title="Quick View" data-prid="${product.id}" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search pr-btns"></span></a>                            
     </div>
     <!-- product badge -->
     ${productsAndTheirSections(product,sections)}
   </li>`
 });
 };
-function storeSingleProductToLS(button){
-  let producId = parseInt(button.getAttribute('data-prid'));
-  addToLocalStorage('clickedProduct', {"id": producId});
+function storeSingleProductToLS(){
+  let imgs = document.querySelectorAll('.openProduct');
+  imgs.forEach(img => {
+    img.addEventListener('click', function(){
+      let producId = parseInt(img.getAttribute('data-prid'));
+      addToLocalStorage('clickedProduct', {"id": producId});
+    });
+  });
 };
 function printSidebar(){
   ajaxCallBack('brands.json', function(data){
@@ -639,7 +664,6 @@ function deleteProduct(type)
     deleteProductBtn[i].addEventListener('click', function(e){
       e.preventDefault();
       let table = document.querySelector('#cart-view .container');   
-      // let productId = this.parentElement.parentElement.children[2].children[0].innerHTML;
       let productId = this.getAttribute('data-prid');
       let idNumber = parseInt(productId);
       let item = getFromLocalStorage(type);
@@ -662,15 +686,13 @@ function deleteProduct(type)
       if(getFromLocalStorage(type) == null || getFromLocalStorage(type).length == 0){
         localStorage.removeItem(type);
         if(type == 'cart'){
-        table.innerHTML = `<h1 class="text-center empty-cart">Your cart is empty.</h1>
-                            
+        table.innerHTML = `<h1 class="text-center empty-cart">Your cart is empty.</h1>                           
                             <a href="products.html" class="aa-browse-btn">Browse Products...</a>`;
         }
         if(type == 'wishlist'){
           let wishlistWrapper = document.querySelector('.cart-view-area');
           wishlistWrapper.style.flexDirection = 'column!important';
-          wishlistWrapper.innerHTML = `<h1 class="text-center empty-cart">Your wishlist is empty.</h1>
-                          
+          wishlistWrapper.innerHTML = `<h1 class="text-center empty-cart">Your wishlist is empty.</h1>                      
                             <a href="products.html" class="aa-browse-btn">Browse Products...</a>`;
         }
       }
@@ -748,6 +770,7 @@ function changeProducts(){
   }
   printProducts(products);
   getButtonsForAdding();
+  storeSingleProductToLS();
 };
 function changeBlogs(){
   ajaxCallBack("blogs.json", function(blogs){
@@ -764,6 +787,7 @@ function changeBlogs(){
   }
 
   printBlogs(blogs);
+  singlePageBlog();
 });
   
 };
@@ -1157,19 +1181,22 @@ function getButtonsForAdding(){
     });
   });
 }
-if(url.includes('/index.html')){  
+if(url.includes('/index.html')){
   ajaxCallBack('products.json', function(data){
     indexProducts(data,'male','#men .aa-product-catg');
     indexProducts(data, 'female', '#women .aa-product-catg');
     indexProducts(data, 'sport', '#sports .aa-product-catg');
 });
+  ajaxCallBack('blogs.json', function(blogs){
+  printBlogs(blogs);
+  });
   window.onload = function(){
     getButtonsForAdding();
+    storeSingleProductToLS();
+    getClickedModal();
     removeFromLocalStorage('cartForCheckout');
     mailCheck();
-    ajaxCallBack('blogs.json', function(blogs){
-    printBlogs(blogs);
-    });
+    singlePageBlog();
   }
 };
 if(url.includes('/blog-archive-2.html')){
@@ -1214,6 +1241,7 @@ if(url.includes('/blog-archive-2.html')){
     removeFromLocalStorage('modalProduct');
     removeFromLocalStorage('clickedProduct');
     removeFromLocalStorage('cartForCheckout');
+    singlePageBlog();
   };
 };
 if(url.includes('/blog-single.html')){
@@ -1318,6 +1346,8 @@ search.addEventListener('keyup', function(){
 });
 window.onload= function(){
   getButtonsForAdding();
+  storeSingleProductToLS();
+  getClickedModal();
   removeFromLocalStorage('clickedBlog');
   removeFromLocalStorage('cartForCheckout');
   let genders = document.querySelectorAll('.input-gender input')
@@ -1476,7 +1506,7 @@ if(url.includes('/product-detail.html')){
         relatedProductsWrapper.innerHTML += `
         <li>
         <figure>
-          <a class="aa-product-img" href="product-detail.html" data-prid="${filteredProducts[i].id}" onclick="storeSingleProductToLS(this)"><img src="${filteredProducts[i].image}" alt="${filteredProducts[i].name}"></a>
+          <a class="aa-product-img openProduct" href="product-detail.html" data-prid="${filteredProducts[i].id}"><img src="${filteredProducts[i].image}" alt="${filteredProducts[i].name}"></a>
           <a class="aa-add-card-btn cart-btn" data-prid="${filteredProducts[i].id}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
           <figcaption>
             <h4 class="aa-product-title"><a href="#">${filteredProducts[i].name}</a></h4>
@@ -1485,7 +1515,7 @@ if(url.includes('/product-detail.html')){
         </figure>                         
         <div class="aa-product-hvr-content">
           <a data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o wish-btn pr-btns" data-prid="${filteredProducts[i].id}"></span></a>
-          <a data-toggle2="tooltip" data-placement="top" title="Quick View" data-prid="${filteredProducts[i].id}" data-toggle="modal" data-target="#quick-view-modal" onclick="getClickedModal(this)"><span class="fa fa-search pr-btns"></span></a>                            
+          <a class="openModal" data-toggle2="tooltip" data-placement="top" title="Quick View" data-prid="${filteredProducts[i].id}" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search pr-btns"></span></a>                            
         </div>
         <!-- product badge -->
         ${productsAndTheirSections(filteredProducts[i],sections)}
@@ -1496,6 +1526,8 @@ if(url.includes('/product-detail.html')){
   });
   window.onload= function(){
     getButtonsForAdding();
+    storeSingleProductToLS();
+    getClickedModal();
     removeFromLocalStorage('cartForCheckout');
     let receiveNotif = document.querySelector('.aa-subscribe-area');
     if(receiveNotif != null){
@@ -1506,9 +1538,7 @@ if(url.includes('/product-detail.html')){
   } 
 };
 if(url.includes('/wishlist.html')){
-  // let wishlistWrapper = document.querySelector('.table tbody');
   let wishlistWrapper = document.querySelector('.cart-view-area');
-  // let table = document.querySelector('#cart-view .container');
   let wishlist = getFromLocalStorage('wishlist');
   wishlistWrapper.innerHTML = '';
   if(getFromLocalStorage('wishlist') == null || getFromLocalStorage('wishlist').length == 0){
@@ -1522,26 +1552,16 @@ if(url.includes('/wishlist.html')){
     for(let i = 0; i < wishlist.length; i++){
       for(let j = 0; j < data.length; j++){
         if(wishlist[i].id == data[j].id){
-          // wishlistWrapper.innerHTML += `
-          // <tr>
-          // <td><a class="aa-remove-product red-remove" data-prid="${data[j].id}" href="#" onclick="deleteProduct(this)"><span class="fa fa-times"></span></a></td>
-          // <td><a class="aa-cartbox-img"><img src="${data[j].image}" alt="img"></a></td>
-          // <td><a class="aa-cart-title">${data[j].name}</a></td>
-          // <td>${productPrice(data[j])}</td>
-          // <td>${productInStock(data[j])}</td>
-          // <td>${disableCartButton(data[j],'click')}</td>`;
-
-          //style="width: 18rem;"
           wishlistWrapper.innerHTML += `
           <div class="col-sm-5 col-md-4 cardWrapper">
             <div class="card wish-card">
-            <img src="${data[j].image}" class="card-img-top w-100" alt="${data[j].name}">
+            <img src="${data[j].image}" class="card-img-top w-100 aa-product-img" alt="${data[j].name}">
             <div class="card-body">
               <h5 class="card-title">${data[j].name}</h5>
               <p class="card-text">${productDiscount(data[j])}</p>
               <span>
               <a href="#" class="btn btn-primary alert-danger aa-remove-product" data-prid="${data[j].id}">Remove product</a>
-              <a href="product-detail.html" data-prid="${data[j].id}" class="btn btn-primary" onclick="storeSingleProductToLS(this)">View product</a>
+              <a href="product-detail.html" data-prid="${data[j].id}" class="btn btn-primary openProduct">View product</a>
               </span>
             </div>
             </div>
@@ -1554,15 +1574,11 @@ if(url.includes('/wishlist.html')){
   )
 window.onload = function(){
   deleteProduct('wishlist');
+  storeSingleProductToLS();
   removeFromLocalStorage('clickedBlog');
   removeFromLocalStorage('clickedProduct');
   removeFromLocalStorage('modalProduct');
   removeFromLocalStorage('cartForCheckout');
-  // localStorage.removeItem('users');
-  // localStorage.removeItem('comments');
-  // localStorage.removeItem('modalProduct');
-  // localStorage.removeItem('colors');
-  // localStorage.removeItem('sectionsProducts');
 }
 };
 };
@@ -1579,7 +1595,6 @@ if(url.includes('/cart.html')){
       for(let i = 0; i < cart.length; i++){
         for(let j = 0; j < data.length; j++){
           if(cart[i].id == data[j].id){
-            //<a class="aa-remove-product red-remove" href="#" data-prid="${data[j].id}" onclick="deleteProduct(this)"><span class="fa fa-times"></span></a>
             cartWrapper.innerHTML += `
             <tr>
             <td><a href="#" class="btn btn-primary alert-danger aa-remove-product" data-prid="${data[j].id}">Remove product</a></td>
