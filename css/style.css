@@ -3791,7 +3791,15 @@ min-width: 40px;
 #aa-footer .aa-footer-bottom .aa-footer-bottom-area .aa-footer-payment span:hover {
   color: #fff;
 }
+.author-banner{
+  margin-bottom: 100px;
+}
+#author{
+  margin-bottom: 100px;
+  width: 100%;
+  height: auto;
 
+}
 /*==================
  RESPONSIVE DESIGN
 ====================*/
