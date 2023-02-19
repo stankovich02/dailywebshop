@@ -421,7 +421,6 @@ function ModalIsOpen(){
   }
 }
 function productModalView(){
- 
   let productQuickView = document.querySelector('.modal-body .row');
   let modalProductFromLocalStorage = getFromLocalStorage('modalProduct');
   let categories = getFromLocalStorage('categories');
