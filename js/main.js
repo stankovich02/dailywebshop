@@ -1632,23 +1632,25 @@ if(url.includes('/cart.html')){
                           <a href="products.html" class="aa-browse-btn">Browse Products...</a>`;
         localStorage.removeItem('cart');
       });
-      let cartTitles = document.querySelectorAll('.table .aa-cart-title');
-      let checkoutBtn = document.querySelector('.checkout-cart');
-      checkoutBtn.addEventListener('click', function(){
-        let cartForCheckout = [];
-        let cartTitle, cartQuantity, productTotalPrice, cartTotalPrice;
-        cartTitles.forEach(function(title){
-          cartTitle = title.innerHTML;
-          let titlePrid = title.getAttribute('data-prid');
-          console.log(titlePrid);
-          cartQuantity = document.querySelector(`.quantity[data-prid="${titlePrid}"]`).innerHTML;
-          productTotalPrice = document.querySelector(`#totalProductPrice[data-prid="${titlePrid}"]`).innerHTML;
-          cartForCheckout.push({"productName": cartTitle,"productQuantity": cartQuantity,"productTotalPrice": productTotalPrice});
+      setTimeout(function(){
+        let cartTitles = document.querySelectorAll('.table .aa-cart-title');
+        let checkoutBtn = document.querySelector('.checkout-cart');
+        checkoutBtn.addEventListener('click', function(){
+          let cartForCheckout = [];
+          let cartTitle, cartQuantity, productTotalPrice, cartTotalPrice;
+          cartTitles.forEach(title => {
+            cartTitle = title.innerHTML;
+            let titlePrid = title.getAttribute('data-prid');
+            console.log(titlePrid);
+            cartQuantity = document.querySelector(`.quantity[data-prid="${titlePrid}"]`).innerHTML;
+            productTotalPrice = document.querySelector(`#totalProductPrice[data-prid="${titlePrid}"]`).innerHTML;
+            cartForCheckout.push({"productName": cartTitle,"productQuantity": cartQuantity,"productTotalPrice": productTotalPrice});
+          });
+          cartTotalPrice = document.querySelector('#TotalCartPrice').innerHTML;
+          cartForCheckout.push({cartTotalPrice});
+          addToLocalStorage('cartForCheckout',cartForCheckout);
         });
-        cartTotalPrice = document.querySelector('#TotalCartPrice').innerHTML;
-        cartForCheckout.push({cartTotalPrice});
-        addToLocalStorage('cartForCheckout',cartForCheckout);
-      });
+      }, 1000);
     }
   
  
