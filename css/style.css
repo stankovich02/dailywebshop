@@ -3797,8 +3797,22 @@ min-width: 40px;
 #author{
   margin-bottom: 100px;
   width: 100%;
-  height: auto;
-
+  display: flex;
+}
+#author img{
+  border-radius: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+#author .row{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#about-author{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 /*==================
  RESPONSIVE DESIGN
@@ -3972,6 +3986,10 @@ min-width: 40px;
   }
   #checkout .checkout-area .checkout-right .aa-payment-method img {
     width: 200px;
+  }
+  #about-author{
+    margin-top: 50px;
+    text-align: center;
   }
 }
 @media (max-width: 850px){
@@ -4540,7 +4558,15 @@ min-width: 40px;
     font-size: 20px;
     color: #333;
   }
-  
+  #author img{
+    max-width: 80%;
+  }
+  #author figure{
+    text-align: center;
+  }
+  #about-text h2{
+    font-size: 25px;
+  }
 }
 @media (max-width: 400px){
   #wpf-loader-two .wpf-loader-two-inner {
