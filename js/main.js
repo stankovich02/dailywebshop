@@ -1195,7 +1195,7 @@ if(url.includes('/index.html')){
   printBlogs(blogs);
   });
   window.onload = function(){
-    getButtonsForAdding();
+    loadFunction(getButtonsForAdding);
     storeSingleProductToLS();
     getClickedModal();
     removeFromLocalStorage('cartForCheckout');
@@ -1350,7 +1350,7 @@ search.addEventListener('keyup', function(){
   changeProducts();
 });
 window.onload= function(){
-  getButtonsForAdding();
+  loadFunction(getButtonsForAdding);
   storeSingleProductToLS();
   getClickedModal();
   removeFromLocalStorage('clickedBlog');
@@ -1602,7 +1602,7 @@ if(url.includes('/cart.html')){
           if(cart[i].id == data[j].id){
             cartWrapper.innerHTML += `
             <tr>
-            <td><a href="#" class="btn btn-primary alert-danger aa-remove-product" data-prid="${data[j].id}">Remove product</a></td>
+            <td><a class="btn btn-primary alert-danger aa-remove-product" data-prid="${data[j].id}">Remove product</a></td>
             <td><a class="aa-cartbox-img"><img src="${data[j].image}" alt="${data[j].name}"></a></td>
             <td><a class="aa-cart-title" data-prid="${data[j].id}">${data[j].name}</a></td>
             <td>$${data[j].price.activePrice}</td>
@@ -1624,7 +1624,7 @@ if(url.includes('/cart.html')){
     if(cart.length != 0){
       loadFunction(getProductQuantity);
       loadFunction(totalPrice);
-      loadFunction(deleteProduct('cart'));
+      deleteProduct('cart');
       $('.clear-cart').click(function(){
         localStorage.removeItem('cart');
         let table = document.querySelector('#cart-view .container');   
