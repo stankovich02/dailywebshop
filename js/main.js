@@ -1383,13 +1383,12 @@ if(url.includes('/blog-single.html')){
   };
 };
 if(url.includes('/products.html')){
+  let products = getFromLocalStorage('allProducts');
   ajaxCallBack('productsSections.json' , function(data){
     addToLocalStorage('sectionsProducts', data);
   });
-ajaxCallBack('products.json', function(data){
-  printProducts(data);
-  printSidebar(data);
-});
+  printProducts(products);
+  printSidebar(products);
 let filter = document.querySelector('#filter-pr');
 let filterProducts = document.querySelector('.filter-products-side');
 filter.addEventListener('click', function(){
