@@ -1259,6 +1259,12 @@ if(url.includes('/index.html')){
     addToLocalStorage('comments', data);
   });
   let promoLinks = document.querySelectorAll('.aa-promo-area a');
+  let promoSliderLinks = document.querySelectorAll('.aa-slider-area a');
+  promoSliderLinks.forEach(link => {
+    link.addEventListener('click', function(){
+      addToLocalStorage('clickedPromo', this.getAttribute("id"));
+  });
+  });
   promoLinks.forEach(link => {
     link.addEventListener('click', function(){
       addToLocalStorage('clickedPromo', this.getAttribute("id"));
@@ -1459,17 +1465,21 @@ window.onload= function(){
     if(clickedPromo == 'forWomen'){
       document.querySelector('.input-gender input[value="2"]').checked = true;
     }
-    if(clickedPromo == 'forMen'){
+    if(clickedPromo == 'forMen' || clickedPromo == 'forMenSlider'){
       document.querySelector('.input-gender input[value="1"]').checked = true;
     }
     if(clickedPromo == 'Heels'){
       document.querySelector('.input-category input[value="9"]').checked = true;
     }
-    if(clickedPromo == 'Heels'){
-      document.querySelector('.input-category input[value="9"]').checked = true;
+    if(clickedPromo == 'Jeans'){
+      document.querySelector('.input-category input[value="3"]').checked = true;
     }
     if(clickedPromo == 'Sport'){
       document.querySelector('.input-gender input[value="3"]').checked = true;
+    }
+    if(clickedPromo == 'Best'){
+      document.querySelector('.input-section input[value="3"]').checked = true;
+      document.querySelector('.input-section input[value="4"]').checked = true;
     }
     if(clickedPromo == 'Discount'){
       document.querySelector('#sortProducts').value = 'discount-desc';
