@@ -1,6 +1,7 @@
 const BASEURL = "data/";
 let url = window.location.pathname;
-function ajaxCallBack(fileName, result){
+//Ajax function for getting data from json files
+function getDataWithAjax(fileName, result){
   $.ajax({
       url: BASEURL + fileName,
       method: "get",
@@ -13,6 +14,7 @@ function ajaxCallBack(fileName, result){
       }
   })
 };
+
 function formatErrorMessage(jqXHR, exception) {
   if (jqXHR.status === 0) {
       return ('Not connected.\nPlease verify your network connection.');
@@ -36,10 +38,10 @@ function formatErrorMessage(jqXHR, exception) {
       return ('Uncaught Error.\n' + jqXHR.responseText);
   }
 };
-ajaxCallBack('categories.json', function(data){
+getDataWithAjax('categories.json', function(data){
   addToLocalStorage('categories', data);
 });
-ajaxCallBack('menu.json', function(data){
+getDataWithAjax('menu.json', function(data){
   printMenu(data)
 });
 numberOfProductsInCart();
@@ -48,6 +50,7 @@ let navBtn = document.querySelector('.navbar-toggle');
 navBtn.addEventListener('click', function(){
   navBar.classList.add('active');
 });
+//Function for getting number of products in cart
 function numberOfProductsInCart(){
   if(getFromLocalStorage('cart')){
     let numberInCart = document.querySelector('.aa-cart-notify');
@@ -58,38 +61,14 @@ function numberOfProductsInCart(){
     numberInCart.innerHTML = '0';
   }
 }
+//Function for printing menu
 function printMenu(menu){
     $('.navbar-nav').html('');
     $('.navbar-nav').html(menu.map(item => `
     <li><a href="${item.href}">${item.name}</a></li>
     `));
 }
-function productsAndTheirSections(product, sectionProducts){
-    let returnValue = '';
-        if(product.productsSectionId == null)
-        {
-            return returnValue;
-        }
-        for(let i = 0; i < sectionProducts.length; i++)
-        {
-        if(sectionProducts[i].id == product.productsSectionId){
-            if(sectionProducts[i].id == 1){
-              returnValue = `<span class="aa-badge aa-sale" href="#">${sectionProducts[i].name.toUpperCase()}</span>`;
-            }
-            if(sectionProducts[i].id == 2){
-              returnValue = `<span class="aa-badge aa-sold-out" href="#">${sectionProducts[i].name.toUpperCase()}</span>`;
-            }
-            if(sectionProducts[i].id == 3){
-              returnValue = `<span class="aa-badge aa-popular" href="#">${sectionProducts[i].name.toUpperCase()}</span>`;
-            }
-            if(sectionProducts[i].id == 4){
-              returnValue = `<span class="aa-badge aa-hot" href="#">${sectionProducts[i].name.toUpperCase()}</span>`;
-            }
-        }
-    }
-   
-    return returnValue;
-}
+//Function which returns price of product if it is on discount or not
 function productDiscount(product){
     let returnValue = '';
     if(product.price.oldPrice == null){
@@ -100,6 +79,7 @@ function productDiscount(product){
     }
     return returnValue;
 }
+//Function for printing products on index page
 function indexProducts(products, category, divName){
   let filteredProducts;
   if(category == 'male'){
@@ -139,6 +119,7 @@ function indexProducts(products, category, divName){
         }
     }
 }
+//Function for printing blogs
 function printBlogs(blogs){
 let sortedBlogs = blogs.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
 if(url == '/index.html' || url == '/dailywebshop/index.html'){
@@ -249,6 +230,7 @@ if(url == '/blog-archive-2.html' || url == '/dailywebshop/blog-archive-2.html'){
 }
 };
 }
+//Function for finding author of blog
 function UsersAndTheirBlogs(users,blog){
   let returnValue = '';
   for(let i = 0; i < users.length; i++){
@@ -258,6 +240,7 @@ function UsersAndTheirBlogs(users,blog){
   }
   return returnValue;
 }
+//Fucntion for printing comments on blogs
 function commentsOnBlogs(users,comments,blog){
   let commArray = [];
   let returnValue = '';
@@ -291,6 +274,7 @@ function commentsOnBlogs(users,comments,blog){
      }
       return returnValue;
 }
+//Function which cut the number of views, likes, comments and put K or M
 function socialNumbers(number){
     let numberToString = number.toString();
     let returnValue;
@@ -324,6 +308,7 @@ function socialNumbers(number){
 
     return returnValue;
 }
+//Function which print date in format Month Day, Year
 function dateOfBlogs(blogDate){
   const date = new Date(blogDate); 
   const month = date.toLocaleString('default', { month: 'long' });
@@ -331,6 +316,7 @@ function dateOfBlogs(blogDate){
   const year = date.getFullYear();
   return month + ' ' + day + ', ' + year;
 }
+//Funtion which gets data-id from btn and store it in local storage
 function getClickedModal(){
   let btns = document.querySelectorAll('.openModal');
   btns.forEach(btn => {
@@ -343,16 +329,7 @@ function getClickedModal(){
   });
  
 }
-function productPrice(product){
-  let returnValue = '';
-  if(product.price.oldPrice == null){
-    returnValue = `<span class="aa-product-view-price">$${product.price.activePrice}</span>`;
-  }
-  else{
-    returnValue = `<span class="aa-product-view-price">$${product.price.activePrice} </span><span class="aa-product-view-price"><del>$${product.price.oldPrice}</del></span>`;
-  }
-  return returnValue;
-}
+//Function which returns in stock or out of stock text
 function productInStock(product){
   let returnValue = '';
   if(product.productsSectionId == 2){
@@ -363,6 +340,7 @@ function productInStock(product){
   }
   return returnValue;
 }
+//Function which returns add to cart button if product is in stock 
 function disableCartButton(product, type){
   let returnValue = '';
   if(product.productsSectionId == 2){
@@ -379,6 +357,7 @@ function disableCartButton(product, type){
   }
   return returnValue;
 }
+//Function which returns sizes of products
 function productsAndTheirSizes(product){
   let returnValue = '';
   product.availableSizes.forEach(size => {
@@ -386,6 +365,7 @@ function productsAndTheirSizes(product){
   });
   return returnValue;
 }
+//Function which returns colros of products
 function productsAndTheirColors(product){
   let returnValue = '';
   let colors = getFromLocalStorage('colors');
@@ -398,6 +378,7 @@ function productsAndTheirColors(product){
  });
   return returnValue;
 }
+//Function which returns categories of products
 function productsAndTheirCategories(product,categories){
     let returnValue = '';
     categories.forEach(category => {
@@ -408,11 +389,39 @@ function productsAndTheirCategories(product,categories){
       return returnValue;
   
 }
+//Function which returns sections of products
+function productsAndTheirSections(product, sectionProducts){
+  let returnValue = '';
+      if(product.productsSectionId == null)
+      {
+          return returnValue;
+      }
+      for(let i = 0; i < sectionProducts.length; i++)
+      {
+      if(sectionProducts[i].id == product.productsSectionId){
+          if(sectionProducts[i].id == 1){
+            returnValue = `<span class="aa-badge aa-sale" href="#">${sectionProducts[i].name.toUpperCase()}</span>`;
+          }
+          if(sectionProducts[i].id == 2){
+            returnValue = `<span class="aa-badge aa-sold-out" href="#">${sectionProducts[i].name.toUpperCase()}</span>`;
+          }
+          if(sectionProducts[i].id == 3){
+            returnValue = `<span class="aa-badge aa-popular" href="#">${sectionProducts[i].name.toUpperCase()}</span>`;
+          }
+          if(sectionProducts[i].id == 4){
+            returnValue = `<span class="aa-badge aa-hot" href="#">${sectionProducts[i].name.toUpperCase()}</span>`;
+          }
+      }
+  }
+ 
+  return returnValue;
+}
+//Function for product quick view
 function productModalView(){
   let productQuickView = document.querySelector('.modal-body .row');
   let modalProductFromLocalStorage = getFromLocalStorage('modalProduct');
   let categories = getFromLocalStorage('categories');
-  ajaxCallBack('products.json', function(products){
+  getDataWithAjax('products.json', function(products){
     products.forEach(product => {
         if(product.id == modalProductFromLocalStorage.id){
           productQuickView.innerHTML = `
@@ -457,6 +466,7 @@ function productModalView(){
   });
   });
 }
+//Function for printing single blog
 function singlePageBlog(){
   let btns = document.querySelectorAll('.aa-read-mor-btn');
   console.log(btns);
@@ -467,6 +477,7 @@ function singlePageBlog(){
     });
   });
 }
+//Function for getting number of comments for each blog
 function numberOfComments(comments,blog){
   let commArray = [];
   comments.forEach(comment => {
@@ -476,6 +487,7 @@ function numberOfComments(comments,blog){
   });
   return commArray.length;
 }
+//Function for printing products
 function printProducts(products){
   let productsContainer = document.querySelector('.aa-product-catg');
   let sections = getFromLocalStorage('sectionsProducts');
@@ -500,6 +512,7 @@ function printProducts(products){
   </li>`
 });
 }
+//Function stores clicked product in local storage
 function storeSingleProductToLS(){
   let imgs = document.querySelectorAll('.openProduct');
   imgs.forEach(img => {
@@ -509,8 +522,9 @@ function storeSingleProductToLS(){
     });
   });
 }
+//Function populates the sidebar with data from JSON files
 function printSidebar(){
-  ajaxCallBack('brands.json', function(data){
+  getDataWithAjax('brands.json', function(data){
     let brandsForm = document.querySelector('#brands-filter');
     brandsForm.innerHTML = '';
     for(let i = 0; i < data.length; i++){
@@ -519,7 +533,7 @@ function printSidebar(){
       </div>`;
     }
   });
-  ajaxCallBack('colors.json', function(data){
+  getDataWithAjax('colors.json', function(data){
     let colorsDiv = document.querySelector('.aa-color-tag');
     colorsDiv.innerHTML = '';
     for(let i = 0; i < data.length; i++){
@@ -530,7 +544,7 @@ function printSidebar(){
       `;
     }
   });
-  ajaxCallBack('genders.json', function(data){
+  getDataWithAjax('genders.json', function(data){
     let genderDiv = document.querySelector('#gender-filter');
     genderDiv.innerHTML = '';
     for(let i = 0; i < data.length; i++){
@@ -565,6 +579,7 @@ function printSidebar(){
     </div>`;
   });
 }
+//Function which return value if product has free shipping or not
 function freeShipping(product){
   if(product.freeShipping){
     return `<span class="aa-badge aa-sale freeShipping">FREE SHIPPING</span>`;
@@ -573,6 +588,7 @@ function freeShipping(product){
     return `<span class="shippFee">Shipping fee: $${product.shippingFee}</span>`;
   }
 }
+//Function for adding products to cart and wishlist
 function addingProducts(productId, type){
   let count = 0;
   let typeOfAdd = getFromLocalStorage(type);
@@ -589,6 +605,7 @@ function addingProducts(productId, type){
       document.querySelector('#popupbgAdded #popup img').src = "img/heart.png";
     }
     addToLocalStorage(type, productArr);
+    numberOfProductsInCart();
     addedParagraph.innerHTML = `Product added to ${type}!`;
     popupAdded.style.display = 'block';
     setTimeout(function(){
@@ -635,6 +652,7 @@ function addingProducts(productId, type){
   }
   }
 }
+//Fucntion for mail validation on newsletter
 function mailCheck(){
   let mailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   let newsButton = document.querySelector('.aa-subscribe-form input[type="button"]');
@@ -671,6 +689,7 @@ function mailCheck(){
     }
   });
 }
+//Function for deleting products from cart and wishlist
 function deleteProduct(btn,productId,type)
 {
       let table = document.querySelector('#cart-view .container');   
@@ -707,10 +726,12 @@ function deleteProduct(btn,productId,type)
         }
       }
 }
+//Function for calculating total price of product in cart
 function productTotalPrice(quantity,price){
   let total = quantity * price;
   return total;
 }
+//Function for total price in cart
 function totalPrice(){
   let totalPrice = document.querySelector('#TotalCartPrice');
   let totalProductPrice = document.querySelectorAll('#totalProductPrice');
@@ -720,7 +741,8 @@ function totalPrice(){
   });
   totalPrice.innerHTML = `$${sum}`;
 }
-function getProductQuantity(){
+//Function for changing quantity of product in cart and total price in cart
+function changeProductQuantity(){
   let pluses = document.querySelectorAll('.plus');
   let minuses = document.querySelectorAll('.minus');
   pluses.forEach(plus => plus.addEventListener('click', function(){
@@ -758,6 +780,7 @@ function getProductQuantity(){
    
   }));
 }
+//Function for triggering filter change on products page
 function changeProducts(){
   let products = getFromLocalStorage('allProducts');
   
@@ -780,8 +803,9 @@ function changeProducts(){
   getButtonsForAdding();
   storeSingleProductToLS();
 }
+//Function for triggering filter change on blog page
 function changeBlogs(){
-  ajaxCallBack("blogs.json", function(blogs){
+  getDataWithAjax("blogs.json", function(blogs){
   blogs = filterBlogs(blogs, 'category', 'genderId');
   blogs = filterBlogs(blogs, 'tag', 'tags');
  
@@ -799,6 +823,7 @@ function changeBlogs(){
 });
   
 }
+//Function for filtering products
 function filterProducts(products, type, filter){
   let filteredProducts;
   let brandArr = [];
@@ -900,6 +925,7 @@ function filterProducts(products, type, filter){
       
     return filteredProducts;
 }
+//Function for filtering blogs
 function filterBlogs(blogs, type, filter){
   let filteredBlogs;
   let values = [];
@@ -931,6 +957,7 @@ function filterBlogs(blogs, type, filter){
   }
   return filteredBlogs;
 }
+//Function for sorting products
 function sortProducts(products){
   let sortValue = document.querySelector('#sortProducts').value;
   if(sortValue == 'default'){
@@ -964,6 +991,7 @@ function sortProducts(products){
   }
   return products;
 }
+//Function for searching products
 function searchProducts(products){
   let searchValue = document.querySelector('#searchProducts').value;
   let filteredProducts = [];
@@ -974,8 +1002,9 @@ function searchProducts(products){
     return products.filter(product => product.name.toLowerCase().includes(searchValue.toLowerCase()));
   }
 }
-var countErrors = 0;
+//Function for validating inputs
 function validateInput(input,regex,type){
+  var countErrors = 0;
   if(type == 'country'){
     if(input.value == '0'){
       input.className = 'is-invalid';
@@ -1154,6 +1183,7 @@ function validation(){
     };
   });
 }
+//Function for printing blog tags in single blog page
 function printBlogTags(blogTags){
   let returnValue = '';
   for(let i = 0; i < blogTags.length; i++){
@@ -1166,15 +1196,19 @@ function printBlogTags(blogTags){
   }
   return returnValue;
 }
+//Function for getting data from local storage
 function getFromLocalStorage(key){
   return JSON.parse(localStorage.getItem(key));
 }
+//Function for adding data to local storage
 function addToLocalStorage(key, value){
   localStorage.setItem(key, JSON.stringify(value));
 }
+//Function for removing data from local storage
 function removeFromLocalStorage(value){
   localStorage.removeItem(value);
 }
+//Function for getting buttons for adding products to cart and wishlist
 function getButtonsForAdding(){
   let wishBtns = document.querySelectorAll('.wish-btn');
   wishBtns.forEach(wishBtn => {
@@ -1189,11 +1223,13 @@ function getButtonsForAdding(){
     });
   });
 }
+//Function for loading functions after 1 second
 function loadFunction(func, parameter){
   setTimeout(function(){
     func(parameter);
   }, 1000);
 }
+//Function for printing products in cart from local storage
 function printProductsInCart(){
   let cartWrapper = document.querySelector('.table tbody');
   let table = document.querySelector('#cart-view .container');
@@ -1221,6 +1257,44 @@ function printProductsInCart(){
       }
   }
 }
+//Function for printing products in wishlist from local storage
+function printProductsInWishlist(){
+  let wishlistWrapper = document.querySelector('.cart-view-area');
+  let wishlist = getFromLocalStorage('wishlist');
+  wishlistWrapper.innerHTML = '';
+  if(getFromLocalStorage('wishlist') == null || getFromLocalStorage('wishlist').length == 0){
+    wishlistWrapper.innerHTML = `<h1 class="text-center empty-cart">Your wishlist is empty.</h1>
+                       <br/>
+                       <a href="products.html" class="aa-browse-btn">Browse Products...</a>`;
+   }
+  else{
+  getDataWithAjax('products.json', function(data){
+    wishlistWrapper.innerHTML = '';
+    for(let i = 0; i < wishlist.length; i++){
+      for(let j = 0; j < data.length; j++){
+        if(wishlist[i].id == data[j].id){
+          wishlistWrapper.innerHTML += `
+          <div class="col-sm-5 col-md-4 cardWrapper">
+            <div class="card wish-card">
+            <img src="${data[j].image}" class="card-img-top w-100 aa-product-img" alt="${data[j].name}">
+            <div class="card-body">
+              <h5 class="card-title">${data[j].name}</h5>
+              <p class="card-text">${productDiscount(data[j])}</p>
+              <span>
+              <a class="btn btn-primary alert-danger aa-remove-product" data-prid="${data[j].id}" data-page="wishlist">Remove product</a>
+              <a href="product-detail.html" data-prid="${data[j].id}" class="btn btn-primary openProduct">View product</a>
+              </span>
+            </div>
+            </div>
+          </div>
+          `;
+        }
+        }
+    }
+  })
+}
+}
+//Function for creating trigger on delete buttons
 function deleteProductTrigger(){
   let deleteProductBtn = document.querySelectorAll('.aa-remove-product');
   deleteProductBtn.forEach(btn => {
@@ -1247,7 +1321,7 @@ if(!url.includes('/product-detail.html')){
   removeFromLocalStorage('colors');
 }
 if(url.includes('/index.html')){
-  ajaxCallBack('productsSections.json' , function(data){
+  getDataWithAjax('productsSections.json' , function(data){
     addToLocalStorage('sectionsProducts', data);
   });
   let users = fetch(BASEURL + 'users.json')
@@ -1271,13 +1345,13 @@ if(url.includes('/index.html')){
   });
   });
   window.onload = function(){
-    ajaxCallBack('products.json', function(data){
+    getDataWithAjax('products.json', function(data){
       addToLocalStorage('allProducts', data);
       indexProducts(data,'male','#men .aa-product-catg');
       indexProducts(data, 'female', '#women .aa-product-catg');
       indexProducts(data, 'sport', '#sports .aa-product-catg');
     });
-    ajaxCallBack('blogs.json', function(blogs){
+    getDataWithAjax('blogs.json', function(blogs){
       printBlogs(blogs);
     });
     loadFunction(getButtonsForAdding);
@@ -1333,7 +1407,7 @@ if(url.includes('/blog-archive-2.html')){
     });
   });
   window.onload = function(){
-    ajaxCallBack('blogs.json', function(blogs){
+    getDataWithAjax('blogs.json', function(blogs){
       loadFunction(printBlogs,blogs);
     }); 
     removeFromLocalStorage('modalProduct');
@@ -1349,7 +1423,7 @@ if(url.includes('/blog-single.html')){
   window.onload = function(){
     removeFromLocalStorage('modalProduct');
     removeFromLocalStorage('clickedProduct');
-    ajaxCallBack('blogs.json', function(blogs){
+    getDataWithAjax('blogs.json', function(blogs){
       let clickedBlog = getFromLocalStorage('clickedBlog');
       let usersFromLocalStorage = getFromLocalStorage('users');    
       let blogContent = document.querySelector('.aa-blog-content');
@@ -1412,7 +1486,7 @@ if(url.includes('/blog-single.html')){
 };
 if(url.includes('/products.html')){
   let products = getFromLocalStorage('allProducts');
-  ajaxCallBack('productsSections.json' , function(data){
+  getDataWithAjax('productsSections.json' , function(data){
     addToLocalStorage('sectionsProducts', data);
   });
   printProducts(products);
@@ -1566,7 +1640,7 @@ window.onload= function(){
 }
 };
 if(url.includes('/product-detail.html')){
-  ajaxCallBack('colors.json', function(data){
+  getDataWithAjax('colors.json', function(data){
     addToLocalStorage('colors', data);
   });
  
@@ -1576,7 +1650,7 @@ if(url.includes('/product-detail.html')){
   let sections = getFromLocalStorage('sectionsProducts');
   let getNotified = document.querySelector('#aa-getnotified');
   productInfoWrapper.innerHTML = '';
-  ajaxCallBack('products.json', function(products){
+  getDataWithAjax('products.json', function(products){
     products.forEach(product => {
       if(product.id == clickedProduct.id){
         productInfoWrapper.innerHTML = `
@@ -1674,40 +1748,7 @@ if(url.includes('/product-detail.html')){
   } 
 };
 if(url.includes('/wishlist.html')){
-  let wishlistWrapper = document.querySelector('.cart-view-area');
-  let wishlist = getFromLocalStorage('wishlist');
-  wishlistWrapper.innerHTML = '';
-  if(getFromLocalStorage('wishlist') == null || getFromLocalStorage('wishlist').length == 0){
-    wishlistWrapper.innerHTML = `<h1 class="text-center empty-cart">Your wishlist is empty.</h1>
-                       <br/>
-                       <a href="products.html" class="aa-browse-btn">Browse Products...</a>`;
-   }
-  else{
-  ajaxCallBack('products.json', function(data){
-    wishlistWrapper.innerHTML = '';
-    for(let i = 0; i < wishlist.length; i++){
-      for(let j = 0; j < data.length; j++){
-        if(wishlist[i].id == data[j].id){
-          wishlistWrapper.innerHTML += `
-          <div class="col-sm-5 col-md-4 cardWrapper">
-            <div class="card wish-card">
-            <img src="${data[j].image}" class="card-img-top w-100 aa-product-img" alt="${data[j].name}">
-            <div class="card-body">
-              <h5 class="card-title">${data[j].name}</h5>
-              <p class="card-text">${productDiscount(data[j])}</p>
-              <span>
-              <a class="btn btn-primary alert-danger aa-remove-product" data-prid="${data[j].id}" data-page="wishlist">Remove product</a>
-              <a href="product-detail.html" data-prid="${data[j].id}" class="btn btn-primary openProduct">View product</a>
-              </span>
-            </div>
-            </div>
-          </div>
-          `;
-        }
-        }
-    }
-  })
-}
+  printProductsInWishlist();
 window.onload = function(){
   loadFunction(deleteProductTrigger);
   loadFunction(storeSingleProductToLS);
@@ -1727,7 +1768,7 @@ if(url.includes('/cart.html')){
       }
     loadFunction(deleteProductTrigger);
     if(getFromLocalStorage("cart").length){
-      loadFunction(getProductQuantity);
+      loadFunction(changeProductQuantity);
       loadFunction(totalPrice);
       $('.clear-cart').click(function(){
         localStorage.removeItem('cart');
