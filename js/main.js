@@ -533,6 +533,13 @@ function printSidebar(){
       `;
     }
   });
+  let priceWrapper = document.querySelector('.aa-sidebar-price-range form');
+  priceWrapper.innerHTML = `
+  <div id="skipstep" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
+  </div>
+  <span id="skip-value-lower" class="example-val"></span>
+  <span id="skip-value-upper" class="example-val"></span>
+  `;
   let categories = getFromLocalStorage('categories');
   let sections = getFromLocalStorage('sectionsProducts');
   let catSideBar = document.querySelector('#category-filter');
