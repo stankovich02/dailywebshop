@@ -3643,6 +3643,7 @@ min-width: 40px;
   display: inline;
   float: left;
   width: 100%;
+  margin-bottom: 50px;
 }
 #aa-error .aa-error-area {
   display: inline;

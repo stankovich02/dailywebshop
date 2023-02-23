@@ -7,17 +7,25 @@ function ajaxCallBack(fileName, result){
       dataType: "json", 
       success: result,
       error: function(xhr){
-          console.log(formatErrorMessage(xhr, xhr.status));
+        let divError = document.createElement('div');
+        divError.className = 'error';
+        divError.innerHTML = formatErrorMessage(xhr, xhr.status);
       }
   })
 };
 function formatErrorMessage(jqXHR, exception) {
   if (jqXHR.status === 0) {
       return ('Not connected.\nPlease verify your network connection.');
+  } else if (jqXHR.status == 400) {
+      return ('Server understood the request, but request content was invalid.');
+  } else if (jqXHR.status == 403) {
+      return (`Forbidden resource can't be accessed.`);
   } else if (jqXHR.status == 404) {
-      return ('The requested page not found. [404]');
+      location.href = '404.html';
   } else if (jqXHR.status == 500) {
       return ('Internal Server Error [500].');
+  } else if (jqXHR.status == 503) {
+      return ('Service unavailable.');
   } else if (exception === 'parsererror') {
       return ('Requested JSON parse failed.');
   } else if (exception === 'timeout') {
@@ -1250,6 +1258,12 @@ if(url.includes('/index.html')){
   .then(response => response.json()).then(data => {
     addToLocalStorage('comments', data);
   });
+  let promoLinks = document.querySelectorAll('.aa-promo-area a');
+  promoLinks.forEach(link => {
+    link.addEventListener('click', function(){
+      addToLocalStorage('clickedPromo', this.getAttribute("id"));
+  });
+  });
   window.onload = function(){
     ajaxCallBack('products.json', function(data){
       addToLocalStorage('allProducts', data);
@@ -1264,6 +1278,7 @@ if(url.includes('/index.html')){
     loadFunction(storeSingleProductToLS);
     loadFunction(getClickedModal);
     removeFromLocalStorage('cartForCheckout');
+    removeFromLocalStorage('clickedPromo');
     mailCheck();
     loadFunction(singlePageBlog);
   }
@@ -1439,6 +1454,34 @@ window.onload= function(){
   let filters = document.querySelectorAll('.aa-sidebar-widget form');
   let filtersColor = document.querySelector('.aa-sidebar-widget .aa-color-tag');
   let filterNames = document.querySelectorAll('.aa-sidebar-widget h3');
+  if(getFromLocalStorage('clickedPromo')){
+    let clickedPromo = getFromLocalStorage('clickedPromo');
+    if(clickedPromo == 'forWomen'){
+      document.querySelector('.input-gender input[value="2"]').checked = true;
+    }
+    if(clickedPromo == 'forMen'){
+      document.querySelector('.input-gender input[value="1"]').checked = true;
+    }
+    if(clickedPromo == 'Heels'){
+      document.querySelector('.input-category input[value="9"]').checked = true;
+    }
+    if(clickedPromo == 'Heels'){
+      document.querySelector('.input-category input[value="9"]').checked = true;
+    }
+    if(clickedPromo == 'Sport'){
+      document.querySelector('.input-gender input[value="3"]').checked = true;
+    }
+    if(clickedPromo == 'Discount'){
+      document.querySelector('#sortProducts').value = 'discount-desc';
+    }
+    changeProducts();
+  }
+  else{
+   let inputs = document.querySelectorAll('.aa-sidebar-widget input');
+    inputs.forEach(input => {
+      input.checked = false;
+    });
+  }
   if(getFromLocalStorage('sorting')){
     let sorting = getFromLocalStorage('sorting');
     sortProducts.value = sorting.sortType;
