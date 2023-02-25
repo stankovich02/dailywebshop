@@ -555,13 +555,7 @@ function printSidebar(){
       `;
     }
   });
-  let priceWrapper = document.querySelector('.aa-sidebar-price-range form');
-  priceWrapper.innerHTML = `
-  <div id="skipstep" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
-  </div>
-  <span id="skip-value-lower" class="example-val"></span>
-  <span id="skip-value-upper" class="example-val"></span>
-  `;
+
   let categories = getFromLocalStorage('categories');
   let sections = getFromLocalStorage('sectionsProducts');
   let catSideBar = document.querySelector('#category-filter');
@@ -1485,12 +1479,14 @@ if(url.includes('/blog-single.html')){
   };
 };
 if(url.includes('/products.html')){
-  let products = getFromLocalStorage('allProducts');
   getDataWithAjax('productsSections.json' , function(data){
     addToLocalStorage('sectionsProducts', data);
   });
-  printProducts(products);
-  printSidebar(products);
+  getDataWithAjax('products.json', function(data){
+    addToLocalStorage('allProducts', data);
+    printProducts(data);
+    printSidebar(data);
+  });
 let filter = document.querySelector('#filter-pr');
 let filterProducts = document.querySelector('.filter-products-side');
 filter.addEventListener('click', function(){
@@ -1526,117 +1522,119 @@ window.onload= function(){
   loadFunction(getClickedModal);
   removeFromLocalStorage('clickedBlog');
   removeFromLocalStorage('cartForCheckout');
-  let genders = document.querySelectorAll('.input-gender input')
-  let categories = document.querySelectorAll('.input-category input');
-  let brands = document.querySelectorAll('.input-brand input');
-  let sections = document.querySelectorAll('.input-section input');
-  let colors = document.querySelectorAll('.aa-color-tag a');
-  let filters = document.querySelectorAll('.aa-sidebar-widget form');
-  let filtersColor = document.querySelector('.aa-sidebar-widget .aa-color-tag');
-  let filterNames = document.querySelectorAll('.aa-sidebar-widget h3');
-  if(getFromLocalStorage('clickedPromo')){
-    let clickedPromo = getFromLocalStorage('clickedPromo');
-    if(clickedPromo == 'forWomen'){
-      document.querySelector('.input-gender input[value="2"]').checked = true;
+  setTimeout(function(){
+    let genders = document.querySelectorAll('.input-gender input');
+    let categories = document.querySelectorAll('.input-category input');
+    let brands = document.querySelectorAll('.input-brand input');
+    let sections = document.querySelectorAll('.input-section input');
+    let colors = document.querySelectorAll('.aa-color-tag a');
+    let filters = document.querySelectorAll('.aa-sidebar-widget form');
+    let filtersColor = document.querySelector('.aa-sidebar-widget .aa-color-tag');
+    let filterNames = document.querySelectorAll('.aa-sidebar-widget h3');
+    if(getFromLocalStorage('clickedPromo')){
+      let clickedPromo = getFromLocalStorage('clickedPromo');
+      if(clickedPromo == 'forWomen'){
+        document.querySelector('.input-gender input[value="2"]').checked = true;
+      }
+      if(clickedPromo == 'forMen' || clickedPromo == 'forMenSlider'){
+        document.querySelector('.input-gender input[value="1"]').checked = true;
+      }
+      if(clickedPromo == 'Heels'){
+        document.querySelector('.input-category input[value="9"]').checked = true;
+      }
+      if(clickedPromo == 'Jeans'){
+        document.querySelector('.input-category input[value="3"]').checked = true;
+      }
+      if(clickedPromo == 'Sport'){
+        document.querySelector('.input-gender input[value="3"]').checked = true;
+      }
+      if(clickedPromo == 'Best'){
+        document.querySelector('.input-section input[value="3"]').checked = true;
+        document.querySelector('.input-section input[value="4"]').checked = true;
+      }
+      if(clickedPromo == 'Dresses'){
+        document.querySelector('.input-category input[value="5"]').checked = true;
+      }
+      changeProducts();
     }
-    if(clickedPromo == 'forMen' || clickedPromo == 'forMenSlider'){
-      document.querySelector('.input-gender input[value="1"]').checked = true;
+    else{
+     let inputs = document.querySelectorAll('.aa-sidebar-widget input');
+      inputs.forEach(input => {
+        input.checked = false;
+      });
     }
-    if(clickedPromo == 'Heels'){
-      document.querySelector('.input-category input[value="9"]').checked = true;
+    if(getFromLocalStorage('sorting')){
+      let sorting = getFromLocalStorage('sorting');
+      sortProducts.value = sorting.sortType;
+      changeProducts();
     }
-    if(clickedPromo == 'Jeans'){
-      document.querySelector('.input-category input[value="3"]').checked = true;
-    }
-    if(clickedPromo == 'Sport'){
-      document.querySelector('.input-gender input[value="3"]').checked = true;
-    }
-    if(clickedPromo == 'Best'){
-      document.querySelector('.input-section input[value="3"]').checked = true;
-      document.querySelector('.input-section input[value="4"]').checked = true;
-    }
-    if(clickedPromo == 'Discount'){
-      document.querySelector('#sortProducts').value = 'discount-desc';
-    }
-    changeProducts();
-  }
-  else{
-   let inputs = document.querySelectorAll('.aa-sidebar-widget input');
-    inputs.forEach(input => {
-      input.checked = false;
-    });
-  }
-  if(getFromLocalStorage('sorting')){
-    let sorting = getFromLocalStorage('sorting');
-    sortProducts.value = sorting.sortType;
-    changeProducts();
-  }
-  filterNames.forEach(filterName => {
-    filterName.addEventListener('click', function(){
-      if(filterName.innerHTML == 'Shop By Price'){
-        let priceSlider = filterName.parentElement.children[1].children[0];
-        if(priceSlider.style.display == 'none'){    
-          $(priceSlider).css('display','block');
+    filterNames.forEach(filterName => {
+      filterName.addEventListener('click', function(){
+        if(filterName.innerHTML == 'Shop By Price'){
+          let priceSlider = filterName.parentElement.children[1].children[0];
+          if(priceSlider.style.display == 'none'){    
+            $(priceSlider).css('display','block');
+          }
+          else{
+            $(priceSlider).css('display','none');
+          }
         }
         else{
-          $(priceSlider).css('display','none');
+        if(filterName.nextElementSibling.style.display == 'none'){
+          $(filterName).next().slideDown();
+        }
+        else{
+          $(filterName).next().slideUp();
         }
       }
-      else{
-      if(filterName.nextElementSibling.style.display == 'none'){
-        $(filterName).next().slideDown();
-      }
-      else{
-        $(filterName).next().slideUp();
-      }
+      });
+    });
+    $(filters).css('display','none');
+    $(filtersColor).css('display','none');
+    categories.forEach(category => {
+      category.addEventListener('click', function(){
+        changeProducts();
+      });
+    });
+    genders.forEach(gender => {
+      gender.addEventListener('click', function(){
+        changeProducts();
+      });
+    });
+    colors.forEach(color => {
+      color.addEventListener('click', function(){
+        this.parentElement.classList.toggle('active');
+        changeProducts();
+      });
+    });
+    brands.forEach(brand => {
+      brand.addEventListener('click', function(){
+        changeProducts();
+      });
+    });
+    sections.forEach(section => {
+      section.addEventListener('click', function(){
+        changeProducts();
+      });
+    });
+    let priceFilerUpper = document.querySelector('#skip-value-upper');
+    let priceFilerLower = document.querySelector('#skip-value-lower');
+    priceFilerLower.addEventListener('DOMSubtreeModified', function(){
+      changeProducts();
+    });
+    priceFilerUpper.addEventListener('DOMSubtreeModified', function(){
+      changeProducts();
+    });
+    let prView = document.querySelector('.aa-product-catg');
+    window.addEventListener('resize', function(){
+    if(window.innerWidth < 768){
+      prView.classList.add("list");
+    }
+    else{
+      prView.classList.remove("list");
     }
     });
-  });
-  $(filters).css('display','none');
-  $(filtersColor).css('display','none');
-  categories.forEach(category => {
-    category.addEventListener('click', function(){
-      changeProducts();
-    });
-  });
-  genders.forEach(gender => {
-    gender.addEventListener('click', function(){
-      changeProducts();
-    });
-  });
-  colors.forEach(color => {
-    color.addEventListener('click', function(){
-      this.parentElement.classList.toggle('active');
-      changeProducts();
-    });
-  });
-  brands.forEach(brand => {
-    brand.addEventListener('click', function(){
-      changeProducts();
-    });
-  });
-  sections.forEach(section => {
-    section.addEventListener('click', function(){
-      changeProducts();
-    });
-  });
-  let priceFilerUpper = document.querySelector('#skip-value-upper');
-  let priceFilerLower = document.querySelector('#skip-value-lower');
-  priceFilerLower.addEventListener('DOMSubtreeModified', function(){
-    changeProducts();
-  });
-  priceFilerUpper.addEventListener('DOMSubtreeModified', function(){
-    changeProducts();
-  });
-  let prView = document.querySelector('.aa-product-catg');
-  window.addEventListener('resize', function(){
-  if(window.innerWidth < 768){
-    prView.classList.add("list");
-  }
-  else{
-    prView.classList.remove("list");
-  }
-  });
+  }, 200);
 }
 };
 if(url.includes('/product-detail.html')){
