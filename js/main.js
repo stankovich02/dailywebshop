@@ -1326,18 +1326,6 @@ if(url.includes('/index.html')){
   .then(response => response.json()).then(data => {
     addToLocalStorage('comments', data);
   });
-  let promoLinks = document.querySelectorAll('.aa-promo-area a');
-  let promoSliderLinks = document.querySelectorAll('.aa-slider-area a');
-  promoSliderLinks.forEach(link => {
-    link.addEventListener('click', function(){
-      addToLocalStorage('clickedPromo', this.getAttribute("id"));
-  });
-  });
-  promoLinks.forEach(link => {
-    link.addEventListener('click', function(){
-      addToLocalStorage('clickedPromo', this.getAttribute("id"));
-  });
-  });
   window.onload = function(){
     getDataWithAjax('products.json', function(data){
       addToLocalStorage('allProducts', data);
@@ -1531,38 +1519,6 @@ window.onload= function(){
     let filters = document.querySelectorAll('.aa-sidebar-widget form');
     let filtersColor = document.querySelector('.aa-sidebar-widget .aa-color-tag');
     let filterNames = document.querySelectorAll('.aa-sidebar-widget h3');
-    if(getFromLocalStorage('clickedPromo')){
-      let clickedPromo = getFromLocalStorage('clickedPromo');
-      if(clickedPromo == 'forWomen'){
-        document.querySelector('.input-gender input[value="2"]').checked = true;
-      }
-      if(clickedPromo == 'forMen' || clickedPromo == 'forMenSlider'){
-        document.querySelector('.input-gender input[value="1"]').checked = true;
-      }
-      if(clickedPromo == 'Heels'){
-        document.querySelector('.input-category input[value="9"]').checked = true;
-      }
-      if(clickedPromo == 'Jeans'){
-        document.querySelector('.input-category input[value="3"]').checked = true;
-      }
-      if(clickedPromo == 'Sport'){
-        document.querySelector('.input-gender input[value="3"]').checked = true;
-      }
-      if(clickedPromo == 'Best'){
-        document.querySelector('.input-section input[value="3"]').checked = true;
-        document.querySelector('.input-section input[value="4"]').checked = true;
-      }
-      if(clickedPromo == 'Dresses'){
-        document.querySelector('.input-category input[value="5"]').checked = true;
-      }
-      changeProducts();
-    }
-    else{
-     let inputs = document.querySelectorAll('.aa-sidebar-widget input');
-      inputs.forEach(input => {
-        input.checked = false;
-      });
-    }
     if(getFromLocalStorage('sorting')){
       let sorting = getFromLocalStorage('sorting');
       sortProducts.value = sorting.sortType;
