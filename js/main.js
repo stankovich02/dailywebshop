@@ -1599,7 +1599,9 @@ if(url.includes('/product-detail.html')){
   });
  
   let productInfoWrapper = document.querySelector('.aa-product-details-content .row');
-  let clickedProduct;
+  
+  window.onload= function(){
+    let clickedProduct;
   setTimeout(function(){
     clickedProduct = getFromLocalStorage('clickedProduct');
   }, 500);
@@ -1695,11 +1697,11 @@ if(url.includes('/product-detail.html')){
       });
     });
   }, 700);
-  
-  window.onload= function(){
-    getButtonsForAdding();
-    storeSingleProductToLS();
-    getClickedModal();
+    setTimeout(function(){
+      getButtonsForAdding();
+      storeSingleProductToLS();
+      getClickedModal();
+    }, 1000);
     removeFromLocalStorage('cartForCheckout');
     let receiveNotif = document.querySelector('.aa-subscribe-area');
     if(receiveNotif != null){
