@@ -1599,8 +1599,9 @@ if(url.includes('/product-detail.html')){
   });
  
   let productInfoWrapper = document.querySelector('.aa-product-details-content .row');
+  let clickedProduct;
   setTimeout(function(){
-    let clickedProduct = getFromLocalStorage('clickedProduct');
+    clickedProduct = getFromLocalStorage('clickedProduct');
   }, 500);
   let categories = getFromLocalStorage('categories');
   let sections = getFromLocalStorage('sectionsProducts');
@@ -1693,7 +1694,7 @@ if(url.includes('/product-detail.html')){
       }
       });
     });
-  }, 1000);
+  }, 700);
   
   window.onload= function(){
     getButtonsForAdding();
