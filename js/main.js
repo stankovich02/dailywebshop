@@ -1735,16 +1735,16 @@ if(url.includes('/cart.html')){
         let checkoutBtn = document.querySelector('.checkout-cart');
         checkoutBtn.addEventListener('click', function(){
           let cartForCheckout = [];
-          let cartTitle, cartQuantity, productTotalPrice, cartTotalPrice;
           cartTitles.forEach(title => {
-            cartTitle = title.innerHTML;
+            let cartTitle = title.innerHTML;
             let titlePrid = title.getAttribute('data-prid');
-            console.log(titlePrid);
-            cartQuantity = document.querySelector(`.quantity[data-prid="${titlePrid}"]`).innerHTML;
-            productTotalPrice = document.querySelector(`#totalProductPrice[data-prid="${titlePrid}"]`).innerHTML;
+            // let cartQuantity = document.querySelector(`.quantity[data-prid="${titlePrid}"]`).innerHTML;
+            cartQuantity = title.parentElement.parentElement.querySelector('.quantity').innerHTML;
+            // let productTotalPrice = document.querySelector(`#totalProductPrice[data-prid="${titlePrid}"]`).innerHTML;
+            let productTotalPrice = title.parentElement.parentElement.querySelector('#totalProductPrice').innerHTML;
             cartForCheckout.push({"productName": cartTitle,"productQuantity": cartQuantity,"productTotalPrice": productTotalPrice});
           });
-          cartTotalPrice = document.querySelector('#TotalCartPrice').innerHTML;
+          let cartTotalPrice = document.querySelector('#TotalCartPrice').innerHTML;
           cartForCheckout.push({cartTotalPrice});
           addToLocalStorage('cartForCheckout',cartForCheckout);
         });
