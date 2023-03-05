@@ -1598,98 +1598,103 @@ if(url.includes('/product-detail.html')){
     addToLocalStorage('colors', data);
   });
  
- let productInfoWrapper = document.querySelector('.aa-product-details-content .row');
-  let clickedProduct = getFromLocalStorage('clickedProduct');
+  let productInfoWrapper = document.querySelector('.aa-product-details-content .row');
+  setTimeout(function(){
+    let clickedProduct = getFromLocalStorage('clickedProduct');
+  }, 500);
   let categories = getFromLocalStorage('categories');
   let sections = getFromLocalStorage('sectionsProducts');
   let getNotified = document.querySelector('#aa-getnotified');
   productInfoWrapper.innerHTML = '';
-  getDataWithAjax('products.json', function(products){
-    products.forEach(product => {
-      if(product.id == clickedProduct.id){
-        productInfoWrapper.innerHTML = `
-        <div class="col-md-5 col-sm-5 col-xs-12">                              
-                        <div class="aa-product-view-slider">                                
-                          <div id="demo-1" class="simpleLens-gallery-container">
-                            <div class="simpleLens-container">
-                              <div class="simpleLens-big-image-container"><a data-lens-image="${product.image}" class="simpleLens-lens-image"><img src="${product.image}" class="simpleLens-big-image"></a></div>
+  setTimeout(function(){
+    getDataWithAjax('products.json', function(products){
+      products.forEach(product => {
+        if(product.id == clickedProduct.id){
+          productInfoWrapper.innerHTML = `
+          <div class="col-md-5 col-sm-5 col-xs-12">                              
+                          <div class="aa-product-view-slider">                                
+                            <div id="demo-1" class="simpleLens-gallery-container">
+                              <div class="simpleLens-container">
+                                <div class="simpleLens-big-image-container"><a data-lens-image="${product.image}" class="simpleLens-lens-image"><img src="${product.image}" class="simpleLens-big-image"></a></div>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <!-- Modal view content -->
-                      <div class="col-md-7 col-sm-7 col-xs-12">
-                        <div class="aa-product-view-content">
-                          <h3>${product.name}</h3>
-                          <div class="aa-price-block">
-                            ${productDiscount(product)}
-                            <p class="aa-product-avilability">Avilability: ${productInStock(product)}</p>
-                          </div>
-                          <h4>Available sizes:</h4>
-                          <div class="aa-prod-view-size">
-                           ${productsAndTheirSizes(product)}
-                          </div>
-                          <h4>Color</h4>
-                          <div class="aa-color-tag">
-                          ${productsAndTheirColors(product)}                  
-                          </div>
-                          <div class="aa-prod-quantity">
-                            <p class="aa-prod-category">
-                              Category: <a>${productsAndTheirCategories(product,categories)}</a>
-                            </p>
-                          </div>
-                          <br/>
-                          ${freeShipping(product)}
-                          <br/><br/>
-                          <div class="aa-prod-view-bottom">
-                          ${disableCartButton(product,'click')}
-                            <a class="aa-add-to-cart-btn wish-btn pr-btns" data-prid="${product.id}">Add to Wishlist</a>
+                        <!-- Modal view content -->
+                        <div class="col-md-7 col-sm-7 col-xs-12">
+                          <div class="aa-product-view-content">
+                            <h3>${product.name}</h3>
+                            <div class="aa-price-block">
+                              ${productDiscount(product)}
+                              <p class="aa-product-avilability">Avilability: ${productInStock(product)}</p>
+                            </div>
+                            <h4>Available sizes:</h4>
+                            <div class="aa-prod-view-size">
+                             ${productsAndTheirSizes(product)}
+                            </div>
+                            <h4>Color</h4>
+                            <div class="aa-color-tag">
+                            ${productsAndTheirColors(product)}                  
+                            </div>
+                            <div class="aa-prod-quantity">
+                              <p class="aa-prod-category">
+                                Category: <a>${productsAndTheirCategories(product,categories)}</a>
+                              </p>
+                            </div>
+                            <br/>
+                            ${freeShipping(product)}
+                            <br/><br/>
+                            <div class="aa-prod-view-bottom">
+                            ${disableCartButton(product,'click')}
+                              <a class="aa-add-to-cart-btn wish-btn pr-btns" data-prid="${product.id}">Add to Wishlist</a>
+                            </div>
                           </div>
                         </div>
-                      </div>
-        `;
-        if(product.productsSectionId == 2){
-          getNotified.innerHTML = `
-          <div class="aa-subscribe-area">
-          <h3>Receive a notification when this product becomes available.</h3>
-          <form action="" class="aa-subscribe-form">
-            <input type="email" name="email" id="" placeholder="Enter your Email">
-            <input type="button" value="Get notified">
-          </form>
-          <span id="message" class="error"></span>
-        </div>
           `;
+          if(product.productsSectionId == 2){
+            getNotified.innerHTML = `
+            <div class="aa-subscribe-area">
+            <h3>Receive a notification when this product becomes available.</h3>
+            <form action="" class="aa-subscribe-form">
+              <input type="email" name="email" id="" placeholder="Enter your Email">
+              <input type="button" value="Get notified">
+            </form>
+            <span id="message" class="error"></span>
+          </div>
+            `;
+          }
+        }
+      });
+      let relatedProductsWrapper = document.querySelector('.aa-product-catg');
+      let filteredProducts = [];
+      products.forEach(product => {
+        if(product.id == clickedProduct.id){
+        filteredProducts = products.filter(relproduct => relproduct.id !== product.id && relproduct.categoryId == product.categoryId && relproduct.genderId == product.genderId);
+        relatedProductsWrapper.innerHTML = '';
+        for(let i = 0; i < filteredProducts.length; i++){
+          relatedProductsWrapper.innerHTML += `
+          <li>
+          <figure>
+            <a class="aa-product-img openProduct" href="product-detail.html" data-prid="${filteredProducts[i].id}"><img src="${filteredProducts[i].image}" alt="${filteredProducts[i].name}"></a>
+            <a class="aa-add-card-btn cart-btn" data-prid="${filteredProducts[i].id}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+            <figcaption>
+              <h4 class="aa-product-title"><a href="#">${filteredProducts[i].name}</a></h4>
+              ${productDiscount(filteredProducts[i])}
+            </figcaption>
+          </figure>                         
+          <div class="aa-product-hvr-content">
+            <a data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o wish-btn pr-btns" data-prid="${filteredProducts[i].id}"></span></a>
+            <a class="openModal" data-toggle2="tooltip" data-placement="top" title="Quick View" data-prid="${filteredProducts[i].id}" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search pr-btns"></span></a>                            
+          </div>
+          <!-- product badge -->
+          ${productsAndTheirSections(filteredProducts[i],sections)}
+        </li>`;
         }
       }
+      });
     });
-    let relatedProductsWrapper = document.querySelector('.aa-product-catg');
-    let filteredProducts = [];
-    products.forEach(product => {
-      if(product.id == clickedProduct.id){
-      filteredProducts = products.filter(relproduct => relproduct.id !== product.id && relproduct.categoryId == product.categoryId && relproduct.genderId == product.genderId);
-      relatedProductsWrapper.innerHTML = '';
-      for(let i = 0; i < filteredProducts.length; i++){
-        relatedProductsWrapper.innerHTML += `
-        <li>
-        <figure>
-          <a class="aa-product-img openProduct" href="product-detail.html" data-prid="${filteredProducts[i].id}"><img src="${filteredProducts[i].image}" alt="${filteredProducts[i].name}"></a>
-          <a class="aa-add-card-btn cart-btn" data-prid="${filteredProducts[i].id}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
-          <figcaption>
-            <h4 class="aa-product-title"><a href="#">${filteredProducts[i].name}</a></h4>
-            ${productDiscount(filteredProducts[i])}
-          </figcaption>
-        </figure>                         
-        <div class="aa-product-hvr-content">
-          <a data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o wish-btn pr-btns" data-prid="${filteredProducts[i].id}"></span></a>
-          <a class="openModal" data-toggle2="tooltip" data-placement="top" title="Quick View" data-prid="${filteredProducts[i].id}" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search pr-btns"></span></a>                            
-        </div>
-        <!-- product badge -->
-        ${productsAndTheirSections(filteredProducts[i],sections)}
-      </li>`;
-      }
-    }
-    });
-  });
+  }, 1000);
+  
   window.onload= function(){
     getButtonsForAdding();
     storeSingleProductToLS();
