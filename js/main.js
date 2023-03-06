@@ -1604,10 +1604,11 @@ if(url.includes('/product-detail.html')){
     let clickedProduct;
   setTimeout(function(){
     clickedProduct = getFromLocalStorage('clickedProduct');
+    getNotified = document.querySelector('#aa-getnotified');
   }, 500);
   let categories = getFromLocalStorage('categories');
   let sections = getFromLocalStorage('sectionsProducts');
-  let getNotified = document.querySelector('#aa-getnotified');
+  let getNotified;
   productInfoWrapper.innerHTML = '';
   setTimeout(function(){
     getDataWithAjax('products.json', function(products){
@@ -1697,16 +1698,23 @@ if(url.includes('/product-detail.html')){
       });
     });
   }, 700);
+
+  let receiveNotif;
     setTimeout(function(){
       getButtonsForAdding();
       storeSingleProductToLS();
       getClickedModal();
+      receiveNotif = document.querySelector('.aa-subscribe-area');
+      
     }, 1000);
+    setTimeout(function(){
+      if(receiveNotif != null){
+        mailCheck();
+      }
+    }, 1300);
     removeFromLocalStorage('cartForCheckout');
-    let receiveNotif = document.querySelector('.aa-subscribe-area');
-    if(receiveNotif != null){
-      mailCheck();
-    }
+    
+   
   } 
 };
 if(url.includes('/wishlist.html')){
