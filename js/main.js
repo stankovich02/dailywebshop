@@ -1713,8 +1713,6 @@ if(url.includes('/product-detail.html')){
       }
     }, 1300);
     removeFromLocalStorage('cartForCheckout');
-    
-   
   } 
 };
 if(url.includes('/wishlist.html')){
@@ -1746,6 +1744,7 @@ if(url.includes('/cart.html')){
         table.innerHTML = `<h1 class="text-center empty-cart">Your cart is empty.</h1>    
                           <a href="products.html" class="aa-browse-btn">Browse Products...</a>`;
         localStorage.removeItem('cart');
+        numberOfProductsInCart();
       });
         let cartTitles = document.querySelectorAll('.table .aa-cart-title');
         let checkoutBtn = document.querySelector('.checkout-cart');
