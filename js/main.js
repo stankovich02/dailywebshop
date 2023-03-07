@@ -1523,7 +1523,9 @@ window.onload= function(){
       let sorting = getFromLocalStorage('sorting');
       sortProducts.value = sorting.sortType;
       changeProducts();
+      setTimeout(function(){
       getButtonsForAdding();
+      }, 1000);
     }
     filterNames.forEach(filterName => {
       filterName.addEventListener('click', function(){
