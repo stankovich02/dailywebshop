@@ -1523,6 +1523,7 @@ window.onload= function(){
       let sorting = getFromLocalStorage('sorting');
       sortProducts.value = sorting.sortType;
       changeProducts();
+      getButtonsForAdding();
     }
     filterNames.forEach(filterName => {
       filterName.addEventListener('click', function(){
