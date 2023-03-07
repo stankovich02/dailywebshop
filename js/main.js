@@ -774,6 +774,7 @@ function changeProductQuantity(){
    
   }));
 }
+let oldSort = '';
 //Function for triggering filter change on products page
 function changeProducts(){
   let products = getFromLocalStorage('allProducts');
@@ -1491,14 +1492,7 @@ document.querySelector('#pr-overlay').addEventListener('click', function(){
 
 let sortProducts = document.querySelector('#sortProducts');
 sortProducts.addEventListener('change', function(){
-  if(sortProducts.value !== 'default'){
-  addToLocalStorage('sorting', {"sortType": sortProducts.value});
-  }
-  else{
-    removeFromLocalStorage('sorting');
-  }
   changeProducts();
-
 });
 let search = document.querySelector('#searchProducts');
 search.addEventListener('keyup', function(){
@@ -1519,14 +1513,6 @@ window.onload= function(){
     let filters = document.querySelectorAll('.aa-sidebar-widget form');
     let filtersColor = document.querySelector('.aa-sidebar-widget .aa-color-tag');
     let filterNames = document.querySelectorAll('.aa-sidebar-widget h3');
-    if(getFromLocalStorage('sorting')){
-      let sorting = getFromLocalStorage('sorting');
-      sortProducts.value = sorting.sortType;
-      changeProducts();
-      setTimeout(function(){
-      getButtonsForAdding();
-      }, 1000);
-    }
     filterNames.forEach(filterName => {
       filterName.addEventListener('click', function(){
         if(filterName.innerHTML == 'Shop By Price'){
