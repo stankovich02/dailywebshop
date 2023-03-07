@@ -774,7 +774,6 @@ function changeProductQuantity(){
    
   }));
 }
-let oldSort = '';
 //Function for triggering filter change on products page
 function changeProducts(){
   let products = getFromLocalStorage('allProducts');
