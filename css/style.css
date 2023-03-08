@@ -1,41 +1,3 @@
-/*
-  Template Name: Daily Shop
-  Author : MarkUps
-  Author URI: http://www.markups.io/
-  Version: 1.0
-  Tags: light, white, ecommerce, online store, multi page, custom-colors, Bootstrap,responsive, html5, css3, Sass, template, web template
-
-*/
-
-/* Table of Content
-==================================================
-#BASIC TYPOGRAPHY
-#HEADER SECTION
-#NAVBAR SECTION
-#SLIDER SECTION
-#PROMO SECTION
-#PRODUCT SECTION
-#BANNER SECTION
-#POPULAR SECTION
-#SUPPORT SECTION
-#TESTIMONIAL SECTION
-#LATEST BLOG SECTION
-#CLIENT BRAND SECTION
-#PRODUCT PAGE
-#PRODUCT DETAILS PAGE
-#CART VIEW PAGE
-#CHECKOUT PAGE
-#MY ACCOUNT  PAGE
-#BLOG ARCHIVE  PAGE
-#BLOG DETAILS  PAGE
-#CONTACT  PAGE
-#ERROR  PAGE
-#FOOTER SECTION
-#RESPONSIVE DESIGN
-
-*/
-
-/* BASE - Base tyles, Variables, Mixins, etc. */
 body {
   background-color: #fff;
   font-family: "Lato", sans-serif;
@@ -47,7 +9,6 @@ body {
   padding: 0;
 }
 
-/* MODULES - Individual site components */
 ul {
   padding: 0;
   margin: 0;
@@ -207,39 +168,6 @@ img {
   background-color: transparent;
   color: #000000;
 }
-/* LAYOUTS - Page layout styles */
-/*==================
- HEADER SECTION
-====================*/
-/*---- Cartbox transition ----*/
-/* @-webkit-keyframes cartbox-transition {
-  33.33% {
-    top: -13px;
-  }
-
-  66.66% {
-    top: -17px;
-  }
-
-  100% {
-    top: -15px;
-  }
-}
-
-@keyframes cartbox-transition {
-  33.33% {
-    top: -13px;
-  }
-
-  66.66% {
-    top: -17px;
-  }
-
-  100% {
-    top: -15px;
-  }
-} */
-
 #aa-header {
   display: inline;
   float: left;
@@ -355,7 +283,6 @@ img {
   margin-left: -2px;
 }
 #aa-header .aa-header-top .aa-header-top-left .cellphone {
-  /* border-right: 1px solid #ddd; */
   float: left;
 }
 #aa-header .aa-header-top .aa-header-top-left .cellphone p {
@@ -380,7 +307,6 @@ img {
 #aa-header .aa-header-top .aa-header-top-right .aa-head-top-nav-right li a {
   display: inline-block;
   color: #333333;
-  /* border-right: 1px solid #ddd; */
   font-size: 14px;
   padding: 5px 8px;
 }
@@ -489,14 +415,6 @@ img {
   right: 19%;
   top: -15px;
   z-index: 10;
-  /* -webkit-animation-name: cartbox-transition;
-  -webkit-animation-duration: 2s;
-  -webkit-animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
-  animation-name: cartbox-transition;
-  animation-duration: 2s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite; */
 }
 #aa-header .aa-header-bottom .aa-cartbox .aa-cart-link .aa-cart-notify:after, #aa-header .aa-header-bottom .aa-cartbox .aa-cart-link .aa-cart-notify:before {
   top: 100%;
@@ -631,10 +549,6 @@ img {
   font-family: "Lato", sans-serif;
   letter-spacing: 0.5px;
 }
-
-/*==================
- NAVBAR SECTION
-====================*/
 #menu {
   background-color: #1c1c1c;
   display: inline;
@@ -695,8 +609,6 @@ img {
   text-transform: uppercase;
 }
 
-/* ALL SECTION */
-/*scrol to top*/
 .scrollToTop {
   bottom: 60px;
   color: #fff;
@@ -724,7 +636,6 @@ img {
   outline: none;
 }
 
-/*Preloader*/
 @-webkit-keyframes loader-two-before-transition {
   50% {
     left: -154px;
@@ -828,11 +739,6 @@ img {
   display: inline-block;
   margin-top: 42%;
 }
-
-/*==================
-  SLIDER SECTION
-====================*/
-
 #aa-slider {
   float: left;
   display: inline;
@@ -903,11 +809,6 @@ img {
   border: 1px solid #f9f9f9;
   color: #fff;
 }
-
-/*==================
-  PROMO SECTION
-====================*/
-
 #aa-promo {
   float: left;
   display: inline;
@@ -1028,12 +929,6 @@ img {
   -o-transition: all 0.5s;
   transition: all 0.5s;
 }
-
-
-/*==================
-  PRODUCT SECTION
-====================*/
-
 #aa-product {
   display: inline;
   float: left;
@@ -1331,12 +1226,6 @@ img {
 .table-responsive::-webkit-scrollbar {
   width: 5px;
 }
-
-/* .table-responsive::-webkit-scrollbar-track {
-  border-radius: 2px;
-  width: 2px;
-} */
-
 .table-responsive::-webkit-scrollbar-thumb {
   border-radius: 5px;
   width: 5px;
@@ -1403,7 +1292,6 @@ img {
   font-size: 20px;
   color: #000;
 }
-/*=== modal window ===*/
 #popupbgAdded, #popupbgAlready {
   display: none;
   width: 100%;
@@ -1510,11 +1398,6 @@ img {
   margin-bottom: 5px;
   margin-right: 8px;
   padding: 5px 10px;
-  /* -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -ms-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s; */
 }
 #quick-view-modal .modal-content .aa-product-view-content .aa-prod-view-size a:hover {
   border: 1px solid rgb(221, 221, 221);
@@ -1596,10 +1479,6 @@ background-color: #1c1c1c;
 .black-pr{
   font-weight: bold;
 }
-/*==================
-  BANNER SECTION
-====================*/
-
 #aa-banner {
   display: inline;
   float: left;
@@ -1619,11 +1498,6 @@ background-color: #1c1c1c;
 #aa-banner .aa-banner-area a img {
   max-width: 100%;
 }
-
-/*==================
-  POPULAR SECTION
-====================*/
-
 #aa-popular-category {
   display: inline;
   float: left;
@@ -1634,8 +1508,6 @@ background-color: #1c1c1c;
   display: inline;
   float: left;
   width: 100%;
-  /* bootstrap hack:fix content width inside hidden tabs */
-  /* bootstrap hack end */
 }
 #aa-popular-category .aa-popular-category-area .tab-content > .tab-pane:not(.active),
 #aa-popular-category .aa-popular-category-area .pill-content > .pill-pane:not(.active) {
@@ -1653,11 +1525,6 @@ background-color: #1c1c1c;
   height: 30px;
   width: 30px;
 }
-
-/*==================
- SUPPORT SECTION
-====================*/
-
 #aa-support {
   background-color: #333;
   display: inline;
@@ -1691,12 +1558,6 @@ background-color: #1c1c1c;
   font-size: 15px;
   margin-bottom: 0;
 }
-
-
-/*==================
- LATEST BLOG SECTION
-====================*/
-
 #aa-latest-blog {
   display: inline;
   float: left;
@@ -1818,11 +1679,6 @@ background-color: #1c1c1c;
   -o-transition: all 0.5s;
   transition: all 0.5s;
 }
-
-/*==================
- CLIENT BRAND SECTION
-====================*/
-
 #aa-client-brand {
   background-color: #333;
   display: inline;
@@ -1917,11 +1773,6 @@ background-color: #1c1c1c;
   width: 120px;
   background-color: #1c1c1c;
 }
-
-/*==================
- PRODUCT PAGE
-====================*/
-
 #aa-catg-head-banner {
   display: inline;
   float: left;
@@ -1945,7 +1796,6 @@ background-color: #1c1c1c;
 #aa-catg-head-banner .aa-catg-head-banner-area .aa-catg-head-banner-content {
   display: inline-block;
   float: left;
-  /* padding: 10% 0; */
   text-align: center;
   width: 100%;
 }
@@ -1978,10 +1828,6 @@ background-color: #1c1c1c;
   display: inline;
   float: left;
   width: 100%;
-  /* category */
-  /* tags */
-  /* price range  */
-  /* price by color */
 }
 #aa-product-category .aa-sidebar .aa-sidebar-widget h3, #aa-blog-archive .aa-blog-archive-area .aa-blog-sidebar .aa-sidebar-widget h3 {
   padding-bottom: 5px;
@@ -2238,7 +2084,6 @@ background-color: #1c1c1c;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* float: left; */
   padding: 10px 15px;
   width: 100%;
 }
@@ -2385,11 +2230,6 @@ min-width: 40px;
 #aa-product-category .aa-product-catg-content .aa-product-catg-pagination .pagination li span:focus {
   color: #fff;
 }
-
-/*==================
- PRODUCT DETAILS PAGE
-====================*/
-
 #aa-product-details {
   display: inline;
   float: left;
@@ -2422,7 +2262,6 @@ min-width: 40px;
   margin-bottom: 5px;
   margin-right: 8px;
   padding: 5px 10px;
-  /* transition: all 0.5s ease 0s; */
 }
 #aa-product-details .aa-product-details-area .aa-product-details-content .aa-product-view-content .aa-prod-quantity {
   margin-top: 10px;
@@ -2591,10 +2430,6 @@ min-width: 40px;
 #aa-product-details .aa-product-details-area .aa-product-related-item .slick-dots {
   display: none !important;
 }
-
-/*==================
- CART VIEW PAGE
-====================*/
 #collapseFour{
   display: block!important;
 }
@@ -2661,9 +2496,6 @@ min-width: 40px;
 #cart-view .cart-view-area .cart-view-table .table {
  border: none;
 }
-/* #cart-view .cart-view-area .cart-view-table .table thead{
-  display: block;
-} */
 #cart-view .cart-view-area .cart-view-table .table thead tr th {
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
@@ -2698,10 +2530,8 @@ min-width: 40px;
   border-right: 1px solid #ccc;
   text-align: center;
   border: none;
-  /* border-bottom: 1px solid #ccc; */
 }
 #cart-view .cart-view-area .cart-view-table .table tbody tr td:first-child {
-  /* border-left: 1px solid #ccc; */
   border-collapse: separate;
   border-radius: 0px 0px 0px 5px;
 }
@@ -2711,7 +2541,6 @@ min-width: 40px;
   margin-top: 0px;
 }
 #cart-view .cart-view-area .cart-view-table .table tbody tr td:last-child {
-  /* border-left: 1px solid #ccc; */
  border-right: 0;
 }
 #cart-view .cart-view-area .cart-view-table .table tbody tr td .remove {
@@ -2806,9 +2635,6 @@ min-width: 40px;
 .plus{
   border-radius: 0 15px 15px 0;
 }
-/*==================
- CHECKOUT PAGE
-====================*/
 .is-invalid {
   border: 1px solid red;
 }
@@ -2978,11 +2804,6 @@ min-width: 40px;
   padding: 8px 12px;
   width: 100%;
 }
-
-/*==================
- MY ACCOUNT  PAGE
-====================*/
-
 #aa-myaccount {
   display: inline;
   float: left;
@@ -3011,9 +2832,6 @@ min-width: 40px;
   float: left;
   width: 100%;
 }
-
-/*---- Login form ----*/
-
 .aa-login-form input[type="text"],
 .aa-login-form input[type="password"] {
   border: 1px solid #ccc;
@@ -3052,9 +2870,6 @@ min-width: 40px;
 .aa-login-form .aa-lost-password a {
   color: #555;
 }
-
-/*---- LOGIN MODAL ----*/
-
 #login-modal .modal-content {
   border-radius: 0;
 }
@@ -3077,11 +2892,6 @@ min-width: 40px;
 #login-modal .modal-dialog .aa-register-now a {
   margin-left: 5px;
 }
-
-/*==================
- BLOG ARCHIVE  PAGE
-====================*/
-
 #aa-blog-archive {
   display: inline;
   float: left;
@@ -3153,8 +2963,6 @@ min-width: 40px;
   transition: all 0.5s;
 }
 #aa-blog-archive .aa-blog-archive-area .aa-blog-content .aa-blog-content-single .aa-article-bottom {
-  /* display: inline;
-  float: left; */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -3178,9 +2986,6 @@ min-width: 40px;
   float: left;
   margin-bottom: 15px;
   width: 100%;
-  /* category */
-  /* tags */
-  /* price range  */
 }
 #aa-blog-archive .aa-blog-archive-area .aa-blog-sidebar .aa-sidebar-widget h3 {
   margin-top: 5px;
@@ -3344,11 +3149,6 @@ min-width: 40px;
 #aa-blog-archive .aa-blog-archive-2 .aa-latest-blog-single .aa-blog-img .aa-blog-img-caption span {
   margin-right: 8px;
 }
-
-/*==================
- BLOG DETAILS  PAGE
-====================*/
-
 .aa-blog-details h2 {
   color: #555;
   text-align: center;
@@ -3633,12 +3433,6 @@ min-width: 40px;
 .aa-blog-details #respond .form-submit input:hover {
   background-color: #fff;
 }
-
-
-/*==================
- ERROR  PAGE
-====================*/
-
 #aa-error {
   display: inline;
   float: left;
@@ -3686,12 +3480,6 @@ min-width: 40px;
   -o-transition: all 0.5s;
   transition: all 0.5s;
 }
-
-
-/*==================
- FOOTER SECTION
-====================*/
-
 #aa-footer {
   background-color: #222;
   display: inline;
@@ -3815,9 +3603,6 @@ min-width: 40px;
   flex-direction: row;
   align-items: center;
 }
-/*==================
- RESPONSIVE DESIGN
-====================*/
 
 @media (max-width: 1199px) {
   .container{
@@ -4283,11 +4068,6 @@ min-width: 40px;
   #aa-product-category .aa-product-catg-content .aa-product-catg-body .list li {
     width: 100%;
   }
-
-  /* #cart-view .cart-view-area .cart-view-table .table tbody tr td img {
-    height: 70px;
-    width: 70px;
-  } */
   #cart-view .cart-view-area .cart-view-table .table thead tr{
     display: none;
   }
@@ -4295,11 +4075,6 @@ min-width: 40px;
     font-size: 16px;
     padding: 10px 10px;
   }
-/* 
-  #cart-view .cart-view-area .cart-view-table .table tbody tr td {
-    font-size: 14px;
-  } */
-
   #cart-view .cart-view-area .cart-view-table .table tbody tr .aa-cart-view-bottom .aa-cart-coupon .aa-coupon-code {
     font-size: 12px;
     margin-right: 10px;
