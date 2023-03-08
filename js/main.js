@@ -1315,6 +1315,11 @@ if(!url.includes('/products.html') && !url.includes('/index.html') && !url.inclu
 if(!url.includes('/product-detail.html')){
   removeFromLocalStorage('colors');
 }
+if(url.includes('/cart.html')){
+  if(getFromLocalStorage('cartForCheckout') != null && getFromLocalStorage('cartForCheckout').length != 0){
+    removeFromLocalStorage('cartForCheckout');
+  }
+}
 if(url.includes('/index.html')){
   getDataWithAjax('productsSections.json' , function(data){
     addToLocalStorage('sectionsProducts', data);
@@ -1720,9 +1725,7 @@ if(url.includes('/cart.html')){
     removeFromLocalStorage('modalProduct');
     removeFromLocalStorage('clickedBlog');
     removeFromLocalStorage('clickedProduct');
-      if(getFromLocalStorage('cartForCheckout') != null && getFromLocalStorage('cartForCheckout').length != 0){
-        removeFromLocalStorage('cartForCheckout');
-      }
+      
     loadFunction(deleteProductTrigger);
     if(getFromLocalStorage("cart").length){
       loadFunction(changeProductQuantity);
@@ -1732,19 +1735,15 @@ if(url.includes('/cart.html')){
         let table = document.querySelector('#cart-view .container');   
         table.innerHTML = `<h1 class="text-center empty-cart">Your cart is empty.</h1>    
                           <a href="products.html" class="aa-browse-btn">Browse Products...</a>`;
-        localStorage.removeItem('cart');
         numberOfProductsInCart();
       });
-        let cartTitles = document.querySelectorAll('.table .aa-cart-title');
         let checkoutBtn = document.querySelector('.checkout-cart');
         checkoutBtn.addEventListener('click', function(){
+          let cartTitles = document.querySelectorAll('.table .aa-cart-title');
           let cartForCheckout = [];
           cartTitles.forEach(title => {
             let cartTitle = title.innerHTML;
-            let titlePrid = title.getAttribute('data-prid');
-            // let cartQuantity = document.querySelector(`.quantity[data-prid="${titlePrid}"]`).innerHTML;
             cartQuantity = title.parentElement.parentElement.querySelector('.quantity').innerHTML;
-            // let productTotalPrice = document.querySelector(`#totalProductPrice[data-prid="${titlePrid}"]`).innerHTML;
             let productTotalPrice = title.parentElement.parentElement.querySelector('#totalProductPrice').innerHTML;
             cartForCheckout.push({"productName": cartTitle,"productQuantity": cartQuantity,"productTotalPrice": productTotalPrice});
           });

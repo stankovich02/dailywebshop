@@ -4568,6 +4568,9 @@ min-width: 40px;
   #about-text h2{
     font-size: 25px;
   }
+  #billModal .bill{
+    width: 90%;
+  }
 }
 @media (max-width: 400px){
   #wpf-loader-two .wpf-loader-two-inner {
