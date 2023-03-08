@@ -42,7 +42,7 @@ getDataWithAjax('categories.json', function(data){
   addToLocalStorage('categories', data);
 });
 getDataWithAjax('menu.json', function(data){
-  printMenu(data)
+  printMenu(data);
 });
 numberOfProductsInCart();
 let navBar = document.querySelector('.navbar-nav');
