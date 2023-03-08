@@ -796,6 +796,7 @@ function changeProducts(){
   printProducts(products);
   getButtonsForAdding();
   storeSingleProductToLS();
+  getClickedModal();
 }
 //Function for triggering filter change on blog page
 function changeBlogs(){
