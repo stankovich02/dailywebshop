@@ -1027,35 +1027,35 @@ function validateInput(input,regex,type){
     input.className = 'is-invalid';
     switch(type){
       case 'firstname':
-        $(input).next().html('Inccorect first name format. First letter must be capital and name must contain only letters. Example: John');
+        $(input).next().html('Incorrect first name format. First letter must be capital and name must contain only letters. Example: John');
         countErrors++;
         break;
       case 'lastname':
-        $(input).next().html('Inccorect first name format. First letter must be capital and name must contain only letters. Example: Doe');
+        $(input).next().html('Incorrect first name format. First letter must be capital and name must contain only letters. Example: Doe');
         countErrors++;
         break;
       case 'companyname':
-        $(input).next().html('Inccorect company name format. First letter must be capital or number. Example: Company1');
+        $(input).next().html('Incorrect company name format. First letter must be capital or number. Example: Company1');
         countErrors++;
         break;
       case 'email':
-        $(input).next().html('Inccorect email format. Example: jhondoe@gmail.com');
+        $(input).next().html('Incorrect email format. Example: jhondoe@gmail.com');
         countErrors++;
         break;
       case 'phone':
-        $(input).next().html('Inccorect phone format. Example: +381601234567 or 0601234567');
+        $(input).next().html('Incorrect phone format. Example: +381601234567 or 0601234567');
         countErrors++;
         break;
       case 'address':
-        $(input).next().html('Inccorect address format. Example: Street 1');
+        $(input).next().html('Incorrect address format. Example: Street 1');
         countErrors++;
         break;
       case 'city':
-        $(input).next().html('Inccorect city format. First letter must be capital and name must contain only letters. Example: Belgrade');
+        $(input).next().html('Incorrect city format. First letter must be capital and name must contain only letters. Example: Belgrade');
         countErrors++;
         break;
       case 'zip':
-        $(input).next().html('Inccorect zip format. Example: 11000');
+        $(input).next().html('Incorrect zip format. Example: 11000');
         countErrors++;
         break;
     }
