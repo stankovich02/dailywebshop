@@ -1031,7 +1031,7 @@ function validateInput(input,regex,type){
         countErrors++;
         break;
       case 'lastname':
-        $(input).next().html('Incorrect first name format. First letter must be capital and name must contain only letters. Example: Doe');
+        $(input).next().html('Incorrect last name format. First letter must be capital and name must contain only letters. Example: Doe');
         countErrors++;
         break;
       case 'companyname':
